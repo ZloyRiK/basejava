@@ -4,11 +4,9 @@
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
     private int endPoint = 0; // first empty index in array
-    //Инициирован нулем потому что первой будет операция сохранения и там сразу можно считать его
 
     void clear() {
         for (int i = 0; i < endPoint; i++) {
-//            if (storage[i] != null) storage[i] = null; по сути проверка даже не нужна
             storage[i] = null;
         }
     }
