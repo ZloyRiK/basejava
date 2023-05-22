@@ -3,62 +3,60 @@
  */
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
-    private int endPoint = 0; // first empty index in array
+    private int totalResume; // first empty index in array and total Resume value
 
     void clear() {
-        for (int i = 0; i < endPoint; i++) {
+        for (int i = 0; i < totalResume; i++) {
             storage[i] = null;
         }
     }
 
     void save(Resume r) {
-        storage[endPoint] = r;
-        endPoint++;
+        storage[totalResume] = r;
+        totalResume++;
     }
 
     Resume get(String uuid) {
-        int temp = findIndex(uuid);
-        if (temp == -1) {
-            Resume r = new Resume();
-            r.uuid = "Not this time";
-            return r;
-        } else return storage[temp];
+        int index = findIndex(uuid);
+        if (index == -1) {
+            return null;
+        } else return storage[index];
     }
 
     void delete(String uuid) {
         int delIndex = findIndex(uuid);
-        storage[delIndex] = null;
+        if (delIndex != -1) {
+            storage[delIndex] = null;
 
-        while (delIndex != endPoint) {
-            storage[delIndex] = storage[delIndex + 1];
-            delIndex++;
-        }
-        endPoint--;
-    }
-
-    private int findIndex(String uuid) {
-        int index = 0;
-        for (int i = 0; i < endPoint; i++) {
-            if (storage[i].uuid.equals(uuid)) {
-                index = i;
-                break;
-            } else index = -1;
-        }
-        return index;
+            while (delIndex != totalResume) {
+                storage[delIndex] = storage[delIndex + 1];
+                delIndex++;
+            }
+            totalResume--;
+        } else System.out.printf("Resume with %s is not found\n", uuid);
     }
 
     /**
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        Resume[] result = new Resume[endPoint];
-        for (int i = 0; i < endPoint; i++) {
-            result[i] = storage[i];
+        Resume[] allResume = new Resume[totalResume];
+        for (int i = 0; i < totalResume; i++) {
+            allResume[i] = storage[i];
         }
-        return result;
+        return allResume;
     }
 
     int size() {
-        return endPoint;
+        return totalResume;
+    }
+
+    private int findIndex(String uuid) {
+        for (int i = 0; i < totalResume; i++) {
+            if (storage[i].uuid.equals(uuid)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
