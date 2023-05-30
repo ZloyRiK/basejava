@@ -18,19 +18,19 @@ public class ArrayStorage {
 
     Resume get(String uuid) {
         int index = findIndex(uuid);
-        if (index == -1) {
+        if (index < 0) {
             return null;
         } else return storage[index];
     }
 
     void delete(String uuid) {
-        int delIndex = findIndex(uuid);
-        if (delIndex != -1) {
-            storage[delIndex] = null;
+        int index = findIndex(uuid);
+        if (index > -1) {
+            storage[index] = null;
 
-            while (delIndex != totalResume) {
-                storage[delIndex] = storage[delIndex + 1];
-                delIndex++;
+            while (index != totalResume) {
+                storage[index] = storage[index + 1];
+                index++;
             }
             totalResume--;
         } else System.out.printf("Resume with %s is not found\n", uuid);
