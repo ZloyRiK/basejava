@@ -10,13 +10,14 @@ import java.util.Arrays;
 
 public class ArrayStorage {
     private int baseSize = 10000;
-    Resume[] storage = new Resume[baseSize];
+    private Resume[] storage = new Resume[baseSize];
     private int totalResume; // first empty index in array and total com.urise.webapp.model.Resume value
 
     public void clear() {
         for (int i = 0; i < totalResume; i++) {
             storage[i] = null;
         }
+        totalResume = 0;
     }
 
     public void save(Resume r) {
@@ -40,6 +41,13 @@ public class ArrayStorage {
             System.out.printf("Объект %s не найден\n", uuid);
             return null;
         } else return storage[index];
+    }
+
+    public void update(String uuid) {
+        int index = findIndex(uuid);
+        if (index < 0) {
+            System.out.printf("Объект %s не найден\n", uuid);
+        } else System.out.printf("Резюме %s обновлено\n", uuid);
     }
 
     public void delete(String uuid) {
@@ -70,15 +78,10 @@ public class ArrayStorage {
 
     private int findIndex(String uuid) {
         for (int i = 0; i < totalResume; i++) {
-            if (storage[i].uuid.equals(uuid)) {
+            if (storage[i].getUuid().equals(uuid)) {
                 return i;
             }
         }
         return -1;
     }
-
-    void update(Resume r) {
-
-    }
-
 }
