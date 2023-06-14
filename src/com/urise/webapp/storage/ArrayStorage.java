@@ -1,3 +1,7 @@
+package com.urise.webapp.storage;
+
+import com.urise.webapp.model.Resume;
+
 import java.util.Arrays;
 
 /**
@@ -7,15 +11,15 @@ import java.util.Arrays;
 public class ArrayStorage {
     private int baseSize = 10000;
     Resume[] storage = new Resume[baseSize];
-    private int totalResume; // first empty index in array and total Resume value
+    private int totalResume; // first empty index in array and total com.urise.webapp.model.Resume value
 
-    void clear() {
+    public void clear() {
         for (int i = 0; i < totalResume; i++) {
             storage[i] = null;
         }
     }
 
-    void save(Resume r) {
+    public void save(Resume r) {
         if (baseSize <= 0) {
             System.out.print("Память для хранения резюме не выделена\n");
         } else if (totalResume == 0) {
@@ -30,7 +34,7 @@ public class ArrayStorage {
         }
     }
 
-    Resume get(String uuid) {
+    public Resume get(String uuid) {
         int index = findIndex(uuid);
         if (index < 0) {
             System.out.printf("Объект %s не найден\n", uuid);
@@ -38,7 +42,7 @@ public class ArrayStorage {
         } else return storage[index];
     }
 
-    void delete(String uuid) {
+    public void delete(String uuid) {
         int index = findIndex(uuid);
         if (index > -1) {
             storage[index] = storage[totalResume - 1];
@@ -50,7 +54,7 @@ public class ArrayStorage {
     /**
      * @return array, contains only Resumes in storage (without null)
      */
-    Resume[] getAll() {
+    public Resume[] getAll() {
         Resume[] allResume = Arrays.copyOf(storage, totalResume);
         if (totalResume == 0) {
             System.out.print("В базе еще нет резюме\n");
@@ -60,7 +64,7 @@ public class ArrayStorage {
         return allResume;
     }
 
-    int size() {
+    public int size() {
         return totalResume;
     }
 
