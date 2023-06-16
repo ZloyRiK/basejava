@@ -9,29 +9,22 @@ import java.util.Arrays;
  */
 
 public class ArrayStorage {
-    private int baseSize = 10000;
-    private Resume[] storage = new Resume[baseSize];
-    private int totalResume; // first empty index in array and total com.urise.webapp.model.Resume value
+    private final int STORAGE_LIMIT = 10000;
+    private final Resume[] storage = new Resume[STORAGE_LIMIT];
+    private int size; // first empty index in array and total com.urise.webapp.model.Resume value
 
     public void clear() {
-        for (int i = 0; i < totalResume; i++) {
-            storage[i] = null;
-        }
-        totalResume = 0;
+        Arrays.fill(storage, 0, size, null);
     }
 
     public void save(Resume r) {
-        if (baseSize <= 0) {
-            System.out.print("Память для хранения резюме не выделена\n");
-        } else if (totalResume == 0) {
-            System.out.print("База резюме пуста. Сохраняем первое резюме\n");
-            storage[totalResume] = r;
-            totalResume++;
-        } else if (totalResume == baseSize) {
+        if (size == STORAGE_LIMIT) {
             System.out.print("База резюме переполнена. Данные не сохранены\n");
+        } else if (findIndex(r.getUuid()) >= 0) {
+            System.out.printf("Резюме с номером %s уже в базе\n", r.getUuid());
         } else {
-            storage[totalResume] = r;
-            totalResume++;
+            storage[size] = r;
+            size++;
         }
     }
 
@@ -40,44 +33,45 @@ public class ArrayStorage {
         if (index < 0) {
             System.out.printf("Объект %s не найден\n", uuid);
             return null;
-        } else return storage[index];
+        } else {
+            return storage[index];
+        }
     }
 
-    public void update(String uuid) {
-        int index = findIndex(uuid);
+    public void update(Resume r) {
+        int index = findIndex(r.getUuid());
         if (index < 0) {
-            System.out.printf("Объект %s не найден\n", uuid);
-        } else System.out.printf("Резюме %s обновлено\n", uuid);
+            System.out.printf("Объект %s не найден\n", r.getUuid());
+        } else {
+            System.out.printf("Резюме %s обновлено\n", r.getUuid());
+            storage[index] = r;
+        }
     }
 
     public void delete(String uuid) {
         int index = findIndex(uuid);
         if (index > -1) {
-            storage[index] = storage[totalResume - 1];
-            storage[totalResume - 1] = null;
-            totalResume--;
-        } else System.out.printf("Объект %s не найден\n", uuid);
+            storage[index] = storage[size - 1];
+            storage[size - 1] = null;
+            size--;
+        } else {
+            System.out.printf("Объект %s не найден\n", uuid);
+        }
     }
 
     /**
      * @return array, contains only Resumes in storage (without null)
      */
     public Resume[] getAll() {
-        Resume[] allResume = Arrays.copyOf(storage, totalResume);
-        if (totalResume == 0) {
-            System.out.print("В базе еще нет резюме\n");
-        } else if (allResume[0] == null) {
-            System.out.print("Элементы массива не содержат данных\n");
-        }
-        return allResume;
+        return Arrays.copyOf(storage, size);
     }
 
     public int size() {
-        return totalResume;
+        return size;
     }
 
     private int findIndex(String uuid) {
-        for (int i = 0; i < totalResume; i++) {
+        for (int i = 0; i < size; i++) {
             if (storage[i].getUuid().equals(uuid)) {
                 return i;
             }
