@@ -1,13 +1,11 @@
-package com.urise.webapp;
-
-import com.urise.webapp.model.Resume;
-import com.urise.webapp.storage.ArrayStorage;
+import model.Resume;
+import storage.ArrayStorage;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 /**
- * Interactive test for com.urise.webapp.storage.ArrayStorage implementation
+ * Interactive test for storage.ArrayStorage implementation
  * (just run, no need to understand)
  */
 public class MainArray {

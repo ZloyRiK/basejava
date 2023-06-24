@@ -1,6 +1,6 @@
-package com.urise.webapp.storage;
+package storage;
 
-import com.urise.webapp.model.Resume;
+import model.Resume;
 
 import java.util.Arrays;
 
@@ -8,10 +8,10 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 
-public class ArrayStorage {
+public class ArrayStorage implements Storage{
     private final int STORAGE_LIMIT = 10000;
     private final Resume[] storage = new Resume[STORAGE_LIMIT];
-    private int size; // first empty index in array and total com.urise.webapp.model.Resume value
+    private int size; // first empty index in array and total model.Resume value
 
     public void clear() {
         Arrays.fill(storage, 0, size, null);
