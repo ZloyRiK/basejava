@@ -1,5 +1,7 @@
 package storage;
 
+import model.Resume;
+
 /**
  * Array based storage for Resumes
  */
@@ -7,7 +9,16 @@ package storage;
 public class ArrayStorage extends AbstractArrayStorage{
 
 
+    @Override
+    public void insertResume(Resume r, int index) {
+        storage[size] = r;
+    }
 
+    @Override
+    protected void deleteIndex(int index) {
+        storage[index] = storage[size - 1];
+        storage[size - 1] = null;
+    }
 
     protected int findIndex(String uuid) {
         for (int i = 0; i < size; i++) {
