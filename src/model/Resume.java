@@ -17,12 +17,8 @@ public class Resume implements Comparable<Resume>{
     }
 
     @Override
-    public String toString() {
-        return uuid;
-    }
-
-    @Override
     public boolean equals(Object o) {
+//        System.out.printf("\n----------------\n%s\n--------------\n", o);
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Resume resume = (Resume) o;
@@ -37,5 +33,10 @@ public class Resume implements Comparable<Resume>{
     @Override
     public int compareTo(Resume o) {
         return uuid.compareTo(o.uuid);
+    }
+
+    @Override
+    public String toString() {
+        return uuid;
     }
 }

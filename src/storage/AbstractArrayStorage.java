@@ -34,9 +34,11 @@ public abstract class AbstractArrayStorage implements Storage{
         if (index > 0) {
             System.out.printf("Резюме %s обновлено\n", r.getUuid());
             storage[index] = r;
-        } else {
-            System.out.printf("Объект %s не найден\n", r.getUuid());
         }
+        else if (index<-STORAGE_LIMIT){
+            System.out.printf("Передан несуществующий объект\n");
+        }
+        System.out.printf("Объект %s не найден\n", r.getUuid());
     }
 
     public void clear() {
