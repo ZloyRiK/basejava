@@ -17,7 +17,7 @@ public abstract class AbstractArrayStorage implements Storage{
         return size;
     }
 
-    public void save(Resume r) {
+    public final void save(Resume r) {
         int index = findIndex(r.getUuid());
         if (size == STORAGE_LIMIT) {
             System.out.print("База резюме переполнена. Данные не сохранены\n");
@@ -29,7 +29,7 @@ public abstract class AbstractArrayStorage implements Storage{
         }
     }
 
-    public void update(Resume r) {
+    public final void update(Resume r) {
         int index = findIndex(r.getUuid());
         if (index > 0) {
             System.out.printf("Резюме %s обновлено\n", r.getUuid());
@@ -41,14 +41,14 @@ public abstract class AbstractArrayStorage implements Storage{
         System.out.printf("Объект %s не найден\n", r.getUuid());
     }
 
-    public void clear() {
+    public final void clear() {
         Arrays.fill(storage, 0, size, null);
     }
 
-    public void delete(String uuid) {
+    public final void delete(String uuid) {
         int index = findIndex(uuid);
         if (index > -1) {
-            deleteIndex(index);
+            deleteResume(index);
             size--;
         } else {
             System.out.printf("Объект %s не найден\n", uuid);
@@ -56,7 +56,7 @@ public abstract class AbstractArrayStorage implements Storage{
     }
 
 
-    public Resume get(String uuid) {
+    public final Resume get(String uuid) {
         int index = findIndex(uuid);
 //        System.out.printf("\nIndex: %d\nTrying to search: %s\n\n", index, uuid);
         if (index < 0) {
@@ -70,13 +70,13 @@ public abstract class AbstractArrayStorage implements Storage{
     /**
      * @return array, contains only Resumes in storage (without null)
      */
-    public Resume[] getAll() {
+    public final Resume[] getAll() {
         return Arrays.copyOf(storage, size);
     }
 
     public abstract void insertResume(Resume r, int index);
 
-    protected abstract void deleteIndex(int index);
+    protected abstract void deleteResume(int index);
 
     protected abstract int findIndex(String uuid);
 
