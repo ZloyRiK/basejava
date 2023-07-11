@@ -11,7 +11,7 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 
-public abstract class AbstractArrayStorage implements Storage{
+public abstract class AbstractArrayStorage implements Storage {
     protected final int STORAGE_LIMIT = 10000;
     protected final Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int size;
@@ -22,7 +22,8 @@ public abstract class AbstractArrayStorage implements Storage{
 
     public final void save(Resume r) {
         int index = findIndex(r.getUuid());
-        if (size == STORAGE_LIMIT) {
+        System.out.println(index);
+        if (index == STORAGE_LIMIT) {
             throw new StorageExeption(r.getUuid(), "Storage overflow");
         } else if (index >= 0) {
             throw new ExistStorageExeption(r.getUuid());
@@ -35,14 +36,11 @@ public abstract class AbstractArrayStorage implements Storage{
 
     public final void update(Resume r) {
         int index = findIndex(r.getUuid());
-        if (index > 0) {
-            System.out.printf("Резюме %s обновлено\n", r.getUuid());
-            storage[index] = r;
+        if (index < 0) {
+            throw new NotExistStorageExeption(r.getUuid());
         }
-        else if (index<-STORAGE_LIMIT){
-            throw new StorageExeption(r.getUuid(), "Resume not exist. Uuid is null");
-        }
-        throw new NotExistStorageExeption(r.getUuid());
+        System.out.printf("Резюме %s обновлено\n", r.getUuid());
+        storage[index] = r;
     }
 
     public final void clear() {
