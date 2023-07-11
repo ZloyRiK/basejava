@@ -22,7 +22,6 @@ public abstract class AbstractArrayStorage implements Storage {
 
     public final void save(Resume r) {
         int index = findIndex(r.getUuid());
-        System.out.println(index);
         if (index == STORAGE_LIMIT) {
             throw new StorageExeption(r.getUuid(), "Storage overflow");
         } else if (index >= 0) {
@@ -45,6 +44,7 @@ public abstract class AbstractArrayStorage implements Storage {
 
     public final void clear() {
         Arrays.fill(storage, 0, size, null);
+        size = 0;
     }
 
     public final void delete(String uuid) {

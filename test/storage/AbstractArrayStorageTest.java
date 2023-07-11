@@ -16,14 +16,18 @@ class AbstractArrayStorageTest {
     protected static final String UUID_2 = "uuid2";
     protected static final String UUID_3 = "uuid3";
 
+    protected static final Resume R1 = new Resume(UUID_1);
+    protected static final Resume R2 = new Resume(UUID_2);
+    protected static final Resume R3 = new Resume(UUID_3);
+
 
     @BeforeEach
     public void setUP() {
-        storage = new SortedArrayStorage();
+        storage = new SortedArrayStorage(); // Надо убрать
         storage.clear();
-        storage.save(new Resume(UUID_1));
-        storage.save(new Resume(UUID_2));
-        storage.save(new Resume(UUID_3));
+        storage.save(R1);
+        storage.save(R2);
+        storage.save(R3);
     }
 
     @Test
@@ -46,8 +50,9 @@ class AbstractArrayStorageTest {
 
     @Test
     void testSaveStorageOverFlow() {
+        storage.clear();
         Assertions.assertThrows(StorageExeption.class, () -> {
-            for (int i = 0; i < 10000; i++) {
+            for (int i = 0; i < STORAGE_LIMIT + 1; i++) {
                 storage.save(new Resume(String.valueOf(i)));
             }
         });
@@ -61,33 +66,52 @@ class AbstractArrayStorageTest {
     }
 
     @Test
-    void testUpdateStorageExeption(){
+    void testUpdateStorageExeption() {
         Resume r4 = new Resume("uuid4");
         Assertions.assertThrows(StorageExeption.class, () -> storage.update(r4));
     }
 
     @Test
-    void testUpdateNotExistStorageExeption(){
-        Resume r3 = new Resume();
-        Assertions.assertThrows(NotExistStorageExeption.class, () -> storage.update(r3));
+    void testUpdateNotExistStorageExeption() {
+        Resume r4 = new Resume();
+        Assertions.assertThrows(NotExistStorageExeption.class, () -> storage.update(r4));
 
     }
 
     @Test
     void testClear() {
-
+        storage.clear();
+        Assertions.assertEquals(0, storage.size());
     }
 
     @Test
     void testDelete() {
+        storage.delete(UUID_1);
+        Assertions.assertEquals(2, storage.size());
+    }
+
+    @Test
+    void testDeleteNotExist() {
+        Assertions.assertThrows(NotExistStorageExeption.class, () -> storage.delete("uuid4"));
     }
 
     @Test
     void testGet() {
+        Assertions.assertEquals(R1, storage.get(UUID_1));
+    }
+
+    @Test
+    void testGetNotExist() {
+        Assertions.assertThrows(NotExistStorageExeption.class, () -> storage.get("uuid4"));
     }
 
     @Test
     void testGetAll() {
+        Storage expected = new SortedArrayStorage(); // Надо убрать
+        expected.save(R1);
+        expected.save(R2);
+        expected.save(R3);
+        Assertions.assertArrayEquals(expected.getAll(), storage.getAll());
     }
 
 //    protected abstract Storage createStorage();
