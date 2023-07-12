@@ -7,8 +7,10 @@ import model.Resume;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
-class AbstractArrayStorageTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+abstract class AbstractArrayStorageTest {
 
     protected final int STORAGE_LIMIT = 10000;
     protected Storage storage;
@@ -20,10 +22,13 @@ class AbstractArrayStorageTest {
     protected static final Resume R2 = new Resume(UUID_2);
     protected static final Resume R3 = new Resume(UUID_3);
 
+    public AbstractArrayStorageTest (Storage storage){
+        this.storage = storage;
+    }
+
 
     @BeforeEach
     public void setUP() {
-        storage = new SortedArrayStorage(); // Надо убрать
         storage.clear();
         storage.save(R1);
         storage.save(R2);
@@ -52,7 +57,7 @@ class AbstractArrayStorageTest {
     void testSaveStorageOverFlow() {
         storage.clear();
         Assertions.assertThrows(StorageExeption.class, () -> {
-            for (int i = 0; i < STORAGE_LIMIT + 1; i++) {
+            for (int i = 0; i <= STORAGE_LIMIT; i++) {
                 storage.save(new Resume(String.valueOf(i)));
             }
         });
@@ -107,14 +112,8 @@ class AbstractArrayStorageTest {
 
     @Test
     void testGetAll() {
-        Storage expected = new SortedArrayStorage(); // Надо убрать
-        expected.save(R1);
-        expected.save(R2);
-        expected.save(R3);
-        Assertions.assertArrayEquals(expected.getAll(), storage.getAll());
+        Resume[] expected = storage.getAll();
+        Assertions.assertEquals(3, expected.length);
+        Assertions.assertEquals(R2, expected[1]);
     }
-
-//    protected abstract Storage createStorage();
-
-//    public abstract int findIndex(String uuid);
 }
