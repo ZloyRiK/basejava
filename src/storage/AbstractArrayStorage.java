@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 
 public abstract class AbstractArrayStorage implements Storage {
-    protected final int STORAGE_LIMIT = 10000;
+    protected static final int STORAGE_LIMIT = 10000;
     protected final Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int size;
 
@@ -22,8 +22,8 @@ public abstract class AbstractArrayStorage implements Storage {
 
     public final void save(Resume r) {
         int index = findIndex(r.getUuid());
-//        System.out.println(index);
-        if (size == STORAGE_LIMIT) {
+//        System.out.println(index);  // for check index
+        if (size >= STORAGE_LIMIT) {
             throw new StorageExeption(r.getUuid(), "Storage overflow");
         } else if (index >= 0) {
             throw new ExistStorageExeption(r.getUuid());

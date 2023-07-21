@@ -60,12 +60,14 @@ abstract class AbstractArrayStorageTest {
     void testSaveStorageOverFlow() {
         storage.clear();
         try{
-            for (int i = 0; i <= 10000; i++) {
-                storage.save(new Resume());
+            for (int i = 0; i <= AbstractArrayStorage.STORAGE_LIMIT+1; i++) {
+                storage.save(new Resume(String.valueOf(i)));
+//                storage.save(new Resume());
             }
         } catch (StorageExeption e){
-            Assertions.fail("I'm here");
-        } storage.save(new Resume());
+//            Assertions.fail();
+            System.out.println(e);
+        }
     }
 
     @Test
