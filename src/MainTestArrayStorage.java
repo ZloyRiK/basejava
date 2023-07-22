@@ -40,8 +40,10 @@ public class MainTestArrayStorage {
 
 ////        //Stress test for storage limit
 //        for (int i = 0; i <= 10000; i++) {
-//            ARRAY_STORAGE.save(new Resume());
+//            ARRAY_STORAGE.save(new Resume(String.valueOf(i)));
+////            ARRAY_STORAGE.save(new Resume());
 //        }
+////        printAll();
 
     }
 
