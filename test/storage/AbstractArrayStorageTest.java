@@ -68,7 +68,8 @@ abstract class AbstractArrayStorageTest {
             Assertions.fail(e);
 //            System.out.println(e);
         }
-        storage.save(new Resume());
+//        storage.save(new Resume());
+        Assertions.assertThrows(StorageException.class, ()-> storage.save(new Resume()));
     }
 
     @Test
