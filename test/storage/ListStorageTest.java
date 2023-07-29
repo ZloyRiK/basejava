@@ -1,8 +1,6 @@
 package storage;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class ListStorageTest extends AbstractStorageTest {
+class ListStorageTest extends AbstractArrayStorageTest {
 
     public ListStorageTest() {
         super(new ListStorage());

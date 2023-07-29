@@ -26,7 +26,7 @@ public class MainCollections {
         System.out.println("\nGet r1: " + LIST_STORAGE.get(R1.getUuid()));
         System.out.println("Size: " + LIST_STORAGE.size());
 
-//        System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
+//        System.out.println("Get dummy: " + LIST_STORAGE.get("dummy"));
 
         System.out.print("\nResume update: ");
         LIST_STORAGE.update(R1);
@@ -35,6 +35,7 @@ public class MainCollections {
         LIST_STORAGE.delete(R1.getUuid());
         printAll();
         LIST_STORAGE.clear();
+        System.out.println("Storage was cleared");
         printAll();
 
 

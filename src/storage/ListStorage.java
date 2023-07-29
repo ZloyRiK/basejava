@@ -7,6 +7,7 @@ public class ListStorage extends AbstractStorage {
     @Override
     public void clear() {
         storageList.clear();
+        size = 0;
     }
 
     @Override
