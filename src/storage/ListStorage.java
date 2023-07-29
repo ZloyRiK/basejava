@@ -2,7 +2,7 @@ package storage;
 
 import model.Resume;
 
-public class ListStorage extends AbstractStorage{
+public class ListStorage extends AbstractStorage {
 
     @Override
     public void clear() {
@@ -11,7 +11,7 @@ public class ListStorage extends AbstractStorage{
 
     @Override
     public Resume[] getAll() {
-        return new Resume[0];
+        return storageList.toArray(new Resume[0]);
     }
 
     @Override
@@ -31,14 +31,17 @@ public class ListStorage extends AbstractStorage{
 
     @Override
     protected Resume getResume(int index) {
-        return null;
+        return storageList.get(index);
     }
 
     @Override
     protected int findIndex(String uuid) {
         Resume r = new Resume();
-        return storageList.indexOf(r);
+        for (int i = 0; i < storageList.size(); i++) {
+            if (storageList.get(i).getUuid().equals(uuid)) {
+                return i;
+            }
+        }
+        return -1;
     }
-
-
 }
