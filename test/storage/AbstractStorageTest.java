@@ -7,10 +7,10 @@ import model.Resume;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-abstract class AbstractArrayStorageTest {
+import static org.junit.jupiter.api.Assertions.*;
+
+class AbstractStorageTest {
 
     protected Storage storage;
     protected static final String UUID_1 = "uuid1";
@@ -23,7 +23,7 @@ abstract class AbstractArrayStorageTest {
     protected static final Resume R3 = new Resume(UUID_3);
     protected static final Resume R4 = new Resume(UUID_4);
 
-    protected AbstractArrayStorageTest (Storage storage){
+    protected AbstractStorageTest (Storage storage){
         this.storage = storage;
     }
 
@@ -35,7 +35,6 @@ abstract class AbstractArrayStorageTest {
         storage.save(R2);
         storage.save(R3);
     }
-
     @Test
     public void testSize() {
         assertSize(3);
@@ -128,6 +127,7 @@ abstract class AbstractArrayStorageTest {
         Resume[] expected = new Resume[]{R1,R2,R3};
         Assertions.assertArrayEquals(expected, storage.getAll());
     }
+
     private void assertSize(int size) {
         Assertions.assertEquals(size, storage.size());
     }
