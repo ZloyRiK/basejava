@@ -1,5 +1,6 @@
 package storage;
 
+import exeption.StorageException;
 import model.Resume;
 
 import java.util.Arrays;
@@ -10,11 +11,17 @@ import java.util.Arrays;
 
 public abstract class AbstractArrayStorage extends AbstractStorage {
     protected static final int STORAGE_LIMIT = 10000;
+    protected int size;
+
     protected final Resume[] storage = new Resume[STORAGE_LIMIT];
 
     public final void clear() {
         Arrays.fill(storage, 0, size, null);
         size = 0;
+    }
+
+    public int size() {
+        return size;
     }
 
     /**
@@ -24,5 +31,40 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return Arrays.copyOf(storage, size);
     }
 
+
+    @Override
+    protected void doSave(Resume r, Object searchKey) {
+        if (size == STORAGE_LIMIT) {
+            throw new StorageException("Storage overflow", r.getUuid());
+        } else {
+            insertResume(r, (int) searchKey);
+            size++;
+        }
+    }
+
+    @Override
+    protected void doDelete(Object searchKey) {
+        deleteResume((int) searchKey);
+        size--;
+    }
+
+    @Override
+    protected void doUpdate(Resume r, Object searchKey) {
+        storage[(Integer) searchKey] = r;
+    }
+
+    @Override
+    protected Resume doGet(Object searchKey) {
+        return storage[(int)searchKey];
+    }
+
+    @Override
+    protected boolean isExist(Object searchKey) {
+        return (int) searchKey >= 0;
+    }
+
+    protected abstract void insertResume(Resume r, int index);
+
+    protected abstract void deleteResume(int index);
 
 }

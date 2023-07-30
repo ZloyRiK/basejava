@@ -21,7 +21,7 @@ public class MainCollections {
         LIST_STORAGE.save(R2);
         LIST_STORAGE.save(R3);
 
-        System.out.println(LIST_STORAGE.get(UUID_1));
+        System.out.println("\nGet r2: " + LIST_STORAGE.get(UUID_2));
 
         System.out.println("\nGet r1: " + LIST_STORAGE.get(R1.getUuid()));
         System.out.println("Size: " + LIST_STORAGE.size());

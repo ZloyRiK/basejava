@@ -19,23 +19,13 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected void updateResume(Resume r, int index) {
-        storage[index]=r;
-    }
-
-    @Override
-    protected Resume getResume(int index) {
-        return storage[index];
-    }
-
-    @Override
     protected void deleteResume(int index) {
         int newIndex = index+1;
         System.arraycopy(storage, newIndex, storage, index, size-newIndex);
     }
 
     @Override
-    protected int findIndex(String uuid) {
+    protected int getSearchKey(String uuid) {
 //        if (uuid==null){
 ////            System.out.println("Object have null in uuid\n");
 //            return -STORAGE_LIMIT-1;
