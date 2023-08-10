@@ -2,7 +2,10 @@ package storage;
 
 import model.Resume;
 
+import java.util.ArrayList;
+
 public class ListStorage extends AbstractStorage {
+    protected final ArrayList<Resume> storageList = new ArrayList<>();
 
     @Override
     public void clear() {
@@ -21,8 +24,7 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected int getSearchKey(String uuid) {
-        Resume r = new Resume();
+    protected Object getSearchKey(String uuid) {
         for (int i = 0; i < storageList.size(); i++) {
             if (storageList.get(i).getUuid().equals(uuid)) {
                 return i;
@@ -53,9 +55,6 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     protected boolean isExist(Object searchKey) {
-        if ((int)searchKey>=0) {
-            return true;
-        }
-        return false;
+        return (int)searchKey>=0;
     }
 }

@@ -25,7 +25,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected int getSearchKey(String uuid) {
+    protected Object getSearchKey(String uuid) {
 //        if (uuid==null){
 ////            System.out.println("Object have null in uuid\n");
 //            return -STORAGE_LIMIT-1;

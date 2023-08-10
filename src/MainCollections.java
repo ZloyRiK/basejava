@@ -14,6 +14,8 @@ public class MainCollections {
     protected static final Resume R4 = new Resume(UUID_4);
     static final Storage LIST_STORAGE = new ListStorage();
 
+//    static final Map<String, Resume> LIST_STORAGE = new HashMap<>();
+
     public static void main(String[] args) {
 
 

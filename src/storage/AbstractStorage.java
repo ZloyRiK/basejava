@@ -4,12 +4,7 @@ import exeption.ExistStorageException;
 import exeption.NotExistStorageException;
 import model.Resume;
 
-import java.util.ArrayList;
-
 public abstract class AbstractStorage implements Storage {
-
-    protected final ArrayList<Resume> storageList = new ArrayList<>();
-
 
     @Override
     public final void save(Resume r) {
@@ -53,7 +48,7 @@ public abstract class AbstractStorage implements Storage {
         return searchKey;
     }
 
-    protected abstract int getSearchKey(String uuid); // to AbstractArrayStorage
+    protected abstract Object getSearchKey(String uuid); // to AbstractArrayStorage
 
     protected abstract void doSave(Resume r, Object searchKey);
 
