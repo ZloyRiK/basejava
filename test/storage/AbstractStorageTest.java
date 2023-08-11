@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class AbstractStorageTest {
+abstract class AbstractStorageTest {
 
     protected Storage storage;
     protected static final String UUID_1 = "uuid1";
@@ -51,22 +51,6 @@ class AbstractStorageTest {
         Assertions.assertThrows(ExistStorageException.class, () -> storage.save(R1));
         assertSize(3);
 
-    }
-
-    @Test
-    public void testSaveStorageOverflow() {
-        storage.clear();
-        try{
-            for (int i = 0; i < AbstractArrayStorage.STORAGE_LIMIT; i++) {
-//                storage.save(new Resume(String.valueOf(i)));
-                storage.save(new Resume());
-            }
-        } catch (StorageException e){
-            Assertions.fail(e);
-//            System.out.println(e);
-        }
-//        storage.save(new Resume());
-        Assertions.assertThrows(StorageException.class, ()-> storage.save(new Resume()));
     }
 
     @Test
