@@ -52,7 +52,7 @@ public class MapNameStorage extends AbstractStorage {
 //    }
 
     @Override
-    public List<Resume> getAllSorted() {
+    public List<Resume> doGetAll() {
         return new ArrayList<>(storageNameMap.values());
     }
 

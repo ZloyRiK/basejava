@@ -34,12 +34,12 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 //    }
 
     @Override
-    public List<Resume> getAllSorted() {
-        List<Resume> temp = new ArrayList<>();
+    public List<Resume> doGetAll() {
+        List<Resume> list = new ArrayList<>();
         for (int i = 0; i < size(); i++) {
-            temp.add(storage[i]);
+            list.add(storage[i]);
         }
-        return temp;
+        return list;
     }
 
     @Override
