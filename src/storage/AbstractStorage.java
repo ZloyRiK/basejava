@@ -4,7 +4,12 @@ import exeption.ExistStorageException;
 import exeption.NotExistStorageException;
 import model.Resume;
 
+import java.util.Comparator;
+
 public abstract class AbstractStorage implements Storage {
+
+    protected static final Comparator<Resume> RESUME_COMPARATOR =
+            new Resume.ResumeFullNameComparator().thenComparing(new Resume.ResumeUuidComparator());
 
     @Override
     public final void save(Resume r) {
@@ -36,8 +41,9 @@ public abstract class AbstractStorage implements Storage {
         Object searchKey = getSearchKey(uuid);
         if (!isExist(searchKey)) {
             throw new NotExistStorageException(uuid);
-
-        } else return searchKey;
+        } else {
+            return searchKey;
+        }
     }
 
     private Object getNotExistSearchKey(String uuid) {

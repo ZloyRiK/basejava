@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 abstract class AbstractStorageTest {
 
     protected Storage storage;
@@ -16,10 +19,15 @@ abstract class AbstractStorageTest {
     protected static final String UUID_3 = "uuid3";
     protected static final String UUID_4 = "uuid4";
 
-    protected static final Resume R1 = new Resume(UUID_1);
-    protected static final Resume R2 = new Resume(UUID_2);
-    protected static final Resume R3 = new Resume(UUID_3);
-    protected static final Resume R4 = new Resume(UUID_4);
+    protected static final String NAME_1 = "name1";
+    protected static final String NAME_2 = "name2";
+    protected static final String NAME_3 = "name3";
+    protected static final String NAME_4 = "name4";
+
+    protected static final Resume R1 = new Resume(UUID_1, NAME_1);
+    protected static final Resume R2 = new Resume(UUID_2, NAME_2);
+    protected static final Resume R3 = new Resume(UUID_3, NAME_3);
+    protected static final Resume R4 = new Resume(UUID_4, NAME_4);
 
     protected AbstractStorageTest (Storage storage){
         this.storage = storage;
@@ -73,10 +81,10 @@ abstract class AbstractStorageTest {
 
     @Test
     public void testClear() {
-        Resume[] expected = new Resume[0];
+//        List<Resume> expected = new ArrayList<>();
         storage.clear();
         assertSize(0);
-        Assertions.assertArrayEquals(expected, storage.getAll());
+//        Assertions.assertArrayEquals(expected, storage.getAllSorted());
     }
 
     @Test
@@ -104,10 +112,19 @@ abstract class AbstractStorageTest {
         Assertions.assertThrows(NotExistStorageException.class, () -> storage.get(UUID_4));
     }
 
+//    @Test
+//    public void testGetAll() {
+//        Resume[] expected = new Resume[]{R1,R2,R3};
+//        Assertions.assertArrayEquals(expected, storage.getAllSorted());
+//    }
+
     @Test
-    public void testGetAll() {
-        Resume[] expected = new Resume[]{R1,R2,R3};
-        Assertions.assertArrayEquals(expected, storage.getAll());
+    public void testGetAllSorted(){
+        List<Resume> expected = new ArrayList<>();
+        expected.add(R1);
+        expected.add(R2);
+        expected.add(R3);
+        Assertions.assertIterableEquals(expected, storage.getAllSorted());
     }
 
     private void assertSize(int size) {

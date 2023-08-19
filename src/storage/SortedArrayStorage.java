@@ -10,6 +10,20 @@ import java.util.Arrays;
 
 public class SortedArrayStorage extends AbstractArrayStorage {
 
+//    private static class ResumeComparator implements Comparator<Resume> {
+//        @Override
+//        public int compare(Resume o1, Resume o2) {
+//            return o1.getUuid().compareTo(o2.getUuid());
+//        }
+//    }
+
+//    private static final Comparator<Resume> RESUME_COMPARATOR = new Comparator<Resume>(){
+//        @Override
+//        public int compare(Resume o1, Resume o2) {
+//            return o1.getUuid().compareTo(o2.getUuid());
+//        }
+//    };
+
 
     @Override
     public void insertResume(Resume r, int index) {
@@ -31,7 +45,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 //            return -STORAGE_LIMIT-1;
 //        } else {
             Resume searchKey = new Resume(uuid);
-            return Arrays.binarySearch(storage, 0, size, searchKey);
+            return Arrays.binarySearch(storage, 0, size, searchKey, RESUME_COMPARATOR);
 //        }
     }
 }

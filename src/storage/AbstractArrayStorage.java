@@ -3,7 +3,9 @@ package storage;
 import exeption.StorageException;
 import model.Resume;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Array based storage for Resumes
@@ -27,10 +29,18 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     /**
      * @return array, contains only Resumes in storage (without null)
      */
-    public final Resume[] getAll() {
-        return Arrays.copyOf(storage, size);
-    }
+//    public final Resume[] getAll() {
+//        return Arrays.copyOf(storage, size);
+//    }
 
+    @Override
+    public List<Resume> getAllSorted() {
+        List<Resume> temp = new ArrayList<>();
+        for (int i = 0; i < size(); i++) {
+            temp.add(storage[i]);
+        }
+        return temp;
+    }
 
     @Override
     protected void doSave(Resume r, Object searchKey) {
@@ -55,7 +65,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
     @Override
     protected Resume doGet(Object searchKey) {
-        return storage[(int)searchKey];
+        return storage[(int) searchKey];
     }
 
     @Override
