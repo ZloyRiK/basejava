@@ -4,14 +4,28 @@ import exeption.ExistStorageException;
 import exeption.NotExistStorageException;
 import model.Resume;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 public abstract class AbstractStorage implements Storage {
 
-    protected static final Comparator<Resume> RESUME_COMPARATOR =
-            new Resume.ResumeFullNameComparator().thenComparing(new Resume.ResumeUuidComparator());
+//    protected static class ResumeComparator implements Comparator<Resume> {
+//        protected static final Comparator<Resume> RESUME_NAME_COMPARATOR = Comparator.comparing(Resume::getFullName);
+//        protected static final Comparator<Resume> RESUME_UUID_COMPARATOR = Comparator.comparing(Resume::getUuid);
+//
+//        @Override
+//        public int compare(Resume r1, Resume r2) {
+//            int result = RESUME_UUID_COMPARATOR.compare(r1, r2);
+//            if (result != 0) {
+//                return result;
+//            } else {
+//                return RESUME_NAME_COMPARATOR.compare(r1, r2);
+//            }
+//        }
+//    }
+
+    protected static final Comparator<Resume> RESUME_COMPARATOR = Comparator.comparing(Resume::getUuid).thenComparing(Resume::getFullName);
+
 
     @Override
     public final void save(Resume r) {
@@ -41,8 +55,8 @@ public abstract class AbstractStorage implements Storage {
 
     @Override
     public List<Resume> getAllSorted() {
-        List<Resume> list= doGetAll();
-        Collections.sort(list, RESUME_COMPARATOR);
+        List<Resume> list = doGetAll();
+        list.sort(RESUME_COMPARATOR);
         return list;
     }
 
@@ -64,7 +78,7 @@ public abstract class AbstractStorage implements Storage {
         return searchKey;
     }
 
-    protected abstract Object getSearchKey(String uuid); // to AbstractArrayStorage
+    protected abstract Object getSearchKey(String uuid);
 
     protected abstract void doSave(Resume r, Object searchKey);
 
@@ -75,5 +89,6 @@ public abstract class AbstractStorage implements Storage {
     protected abstract Resume doGet(Object searchKey);
 
     protected abstract boolean isExist(Object searchKey);
+
     protected abstract List<Resume> doGetAll();
 }

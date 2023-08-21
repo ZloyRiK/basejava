@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Comparator;
 import java.util.UUID;
 
 /**
@@ -10,6 +9,7 @@ public class Resume {
 
     // Unique identifier
     private final String uuid;
+    private String fullName;
 
     public String getFullName() {
         return fullName;
@@ -19,20 +19,19 @@ public class Resume {
         this.fullName = fullName;
     }
 
-    private String fullName;
-
     public Resume(String uuid, String fullName) {
         this.uuid = uuid;
         this.fullName = fullName;
     }
 
-    public Resume(String uuid) {
-        this.uuid = uuid;
+    public Resume(String fullName) {
+        this.fullName = fullName;
+        this.uuid = UUID.randomUUID().toString();
     }
 
     public Resume() {
         this.uuid = UUID.randomUUID().toString();
-        this.fullName = "Employee";
+        this.fullName = "no name";
     }
 
     public String getUuid() {
@@ -57,22 +56,4 @@ public class Resume {
     public String toString() {
         return uuid;
     }
-
-    public static class ResumeUuidComparator implements Comparator<Resume> {
-        @Override
-        public int compare(Resume o1, Resume o2) {
-            return o1.getUuid().compareTo(o2.getUuid());
-        }
-    }
-
-    public static class ResumeFullNameComparator implements Comparator<Resume> {
-        @Override
-        public int compare(Resume o1, Resume o2) {
-            if (o2.getFullName()==null){
-                return 0;
-            }
-            return o1.getFullName().compareTo(o2.getFullName());
-        }
-    }
-
 }
