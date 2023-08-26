@@ -18,12 +18,12 @@ public class MapResumeStorage extends AbstractStorage {
 
     @Override
     protected void doSave(Resume r, Object resume) {
-        storageNameMap.put((String) resume, r);
+        storageNameMap.put(r.getUuid(), r);
     }
 
     @Override
     protected void doDelete(Object resume) {
-        storageNameMap.remove((String) resume);
+        storageNameMap.remove(((Resume) resume).getUuid());
     }
 
     @Override
@@ -33,7 +33,7 @@ public class MapResumeStorage extends AbstractStorage {
 
     @Override
     protected Resume doGet(Object resume) {
-        return storageNameMap.get(resume);
+        return (Resume) resume;
     }
 
     @Override

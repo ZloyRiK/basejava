@@ -9,23 +9,36 @@ import java.util.List;
 
 public abstract class AbstractStorage implements Storage {
 
-//    protected static class ResumeComparator implements Comparator<Resume> {
-//        protected static final Comparator<Resume> RESUME_NAME_COMPARATOR = Comparator.comparing(Resume::getFullName);
-//        protected static final Comparator<Resume> RESUME_UUID_COMPARATOR = Comparator.comparing(Resume::getUuid);
-//
-//        @Override
-//        public int compare(Resume r1, Resume r2) {
-//            int result = RESUME_UUID_COMPARATOR.compare(r1, r2);
-//            if (result != 0) {
-//                return result;
-//            } else {
-//                return RESUME_NAME_COMPARATOR.compare(r1, r2);
-//            }
-//        }
-//    }
+    protected static class ResumeComparator implements Comparator<Resume> {
+        protected static final Comparator<Resume> RESUME_NAME_COMPARATOR = Comparator.comparing(Resume::getFullName);
+        protected static final Comparator<Resume> RESUME_UUID_COMPARATOR = Comparator.comparing(Resume::getUuid);
 
-    protected static final Comparator<Resume> RESUME_COMPARATOR = Comparator.comparing(Resume::getUuid).thenComparing(Resume::getFullName);
+        @Override
+        public int compare(Resume r1, Resume r2) {
+            int result = RESUME_UUID_COMPARATOR.compare(r1, r2);
+            if (result != 0) {
+                return result;
+            } else {
+                return RESUME_NAME_COMPARATOR.compare(r1, r2);
+            }
+        }
+    }
+//    protected static final Comparator<Resume> RESUME_COMPARATOR = new ResumeComparator();
 
+//    protected static final Comparator<Resume> RESUME_COMPARATOR = Comparator.comparing(Resume::getUuid).thenComparing(Resume::getFullName);
+    protected static final Comparator<Resume> RESUME_COMPARATOR = (o1, o2) -> {
+        if (o1 == null && o2 == null) {
+            return 0;
+        } else if (o1 == null) {
+            return -1;
+        } else if (o2 == null) {
+            return 1;
+        } else {
+            return Comparator.comparing(Resume::getUuid).thenComparing(Resume::getFullName).compare(o1, o2);
+//            Comparator<Resume> result = new ResumeComparator();
+//            return result.compare(o1, o2);
+        }
+    };
 
     @Override
     public final void save(Resume r) {
@@ -66,7 +79,7 @@ public abstract class AbstractStorage implements Storage {
         if (!isExist(searchKey)) {
             throw new NotExistStorageException(uuid);
         } else {
-            return searchKey;
+           return searchKey;
         }
     }
 
