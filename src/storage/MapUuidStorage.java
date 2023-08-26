@@ -42,11 +42,6 @@ public class MapUuidStorage extends AbstractStorage {
         storageMap.clear();
     }
 
-//    @Override
-//    public Resume[] getAll() {
-//        return storageMap.values().toArray(new Resume[0]);
-//    }
-
     @Override
     public List<Resume> doGetAll() {
         return new ArrayList<>(storageMap.values());
