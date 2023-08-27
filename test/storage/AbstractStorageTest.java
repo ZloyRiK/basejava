@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+
 abstract class AbstractStorageTest {
 
     protected Storage storage;
@@ -112,11 +113,6 @@ abstract class AbstractStorageTest {
         Assertions.assertThrows(NotExistStorageException.class, () -> storage.get(UUID_4));
     }
 
-//    @Test
-//    public void testGetAll() {
-//        Resume[] expected = new Resume[]{R1,R2,R3};
-//        Assertions.assertArrayEquals(expected, storage.getAllSorted());
-//    }
 
     @Test
     public void testGetAllSorted(){
