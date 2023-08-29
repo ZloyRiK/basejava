@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -20,6 +21,8 @@ public class Resume {
     }
 
     public Resume(String uuid, String fullName) {
+        Objects.requireNonNull(uuid, "Uuid can't be null");
+        Objects.requireNonNull(fullName, "FullName can't be null");
         this.uuid = uuid;
         this.fullName = fullName;
     }
@@ -29,31 +32,26 @@ public class Resume {
         this.uuid = UUID.randomUUID().toString();
     }
 
-    public Resume() {
-        this.uuid = UUID.randomUUID().toString();
-        this.fullName = "no name";
-    }
-
     public String getUuid() {
         return uuid;
     }
 
     @Override
+    public String toString() {
+        return uuid + '(' + fullName + ')';
+    }
+
+    @Override
     public boolean equals(Object o) {
-//        System.out.printf("\n----------------\n%s\n--------------\n", o);
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Resume resume = (Resume) o;
-        return uuid.equals(resume.uuid);
+        if (!uuid.equals(resume.uuid)) return false;
+        return fullName.equals(resume.fullName);
     }
 
     @Override
     public int hashCode() {
-        return uuid.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return uuid;
+        return Objects.hash(uuid, fullName);
     }
 }

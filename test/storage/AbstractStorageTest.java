@@ -75,7 +75,7 @@ abstract class AbstractStorageTest {
 
     @Test
     public void testUpdateNotExistStorageException() {
-        Resume r = new Resume();
+        Resume r = new Resume("New Name");
         Assertions.assertThrows(NotExistStorageException.class, () -> storage.update(r));
 
     }

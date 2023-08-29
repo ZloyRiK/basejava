@@ -29,7 +29,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 ////            System.out.println("Object have null in uuid\n");
 //            return -STORAGE_LIMIT-1;
 //        } else {
-            Resume searchKey = new Resume(uuid, "");
+            Resume searchKey = new Resume(uuid, "Name");
             return Arrays.binarySearch(storage, 0, size, searchKey, Comparator.comparing(Resume::getUuid));
 //        }
     }
