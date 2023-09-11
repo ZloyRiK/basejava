@@ -1,5 +1,7 @@
 package model;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -11,6 +13,9 @@ public class Resume {
     // Unique identifier
     private final String uuid;
     private String fullName;
+
+    private final Map <SectionType, AbstractSection> section = new HashMap<>();
+    private final Map <ContactType, String> contacts = new HashMap<>();
 
     public String getFullName() {
         return fullName;
@@ -35,6 +40,8 @@ public class Resume {
     public String getUuid() {
         return uuid;
     }
+
+
 
     @Override
     public String toString() {

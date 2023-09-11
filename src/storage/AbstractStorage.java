@@ -6,11 +6,10 @@ import model.Resume;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.logging.Logger;
 
 public abstract class AbstractStorage<SearchKey> implements Storage {
     //    protected  final Logger log = Logger.getLogger(getClass().getName()); // for extend logging
-    private static final Logger LOG = Logger.getLogger(AbstractStorage.class.getName());
+//    private static final Logger LOG = Logger.getLogger(AbstractStorage.class.getName()); //for this class only
     protected static final Comparator<Resume> RESUME_COMPARATOR = Comparator.comparing(Resume::getUuid).thenComparing(Resume::getFullName);
 
     @Override
@@ -27,7 +26,7 @@ public abstract class AbstractStorage<SearchKey> implements Storage {
 
     @Override
     public final void update(Resume r) {
-        LOG.info("update " + r);
+//        LOG.info("update " + r);
         SearchKey searchKey = getExistSearchKey(r.getUuid());
         System.out.printf("Resume %s updated\n", r.getUuid());
         doUpdate(r, searchKey);
@@ -36,7 +35,7 @@ public abstract class AbstractStorage<SearchKey> implements Storage {
 
     @Override
     public final void delete(String uuid) {
-        LOG.info("delete " + uuid);
+//        LOG.info("delete " + uuid);
         SearchKey searchKey = getExistSearchKey(uuid);
         doDelete(searchKey);
     }
@@ -52,7 +51,7 @@ public abstract class AbstractStorage<SearchKey> implements Storage {
     private SearchKey getExistSearchKey(String uuid) {
         SearchKey searchKey = getSearchKey(uuid);
         if (!isExist(searchKey)) {
-            LOG.warning("Resume not exist. Must be exist");
+//            LOG.warning("Resume not exist. Resume must exist");
             throw new NotExistStorageException(uuid);
         } else {
             return searchKey;
@@ -62,7 +61,7 @@ public abstract class AbstractStorage<SearchKey> implements Storage {
     private SearchKey getNotExistSearchKey(String uuid) {
         SearchKey searchKey = getSearchKey(uuid);
         if (isExist(searchKey)) {
-            LOG.warning("Resume" + uuid + "already exist.");
+//            LOG.warning("Resume" + uuid + "already exist.");
             throw new ExistStorageException(uuid);
         }
         return searchKey;
