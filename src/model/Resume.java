@@ -14,7 +14,7 @@ public class Resume {
     private final String uuid;
     private String fullName;
 
-    private final Map <SectionType, AbstractSection> section = new HashMap<>();
+    private final Map <SectionType, AbstractSection> sections = new HashMap<>();
     private final Map <ContactType, String> contacts = new HashMap<>();
 
     public String getFullName() {
@@ -41,7 +41,21 @@ public class Resume {
         return uuid;
     }
 
+    public AbstractSection getSection(SectionType type){
+        return sections.get(type);
+    }
 
+    public String getContact(ContactType type){
+        return contacts.get(type);
+    }
+
+    public void setSection(SectionType type, AbstractSection section){
+        sections.put(type, section);
+    }
+
+    public void setContact(ContactType type, String value){
+        contacts.put(type, value);
+    }
 
     @Override
     public String toString() {

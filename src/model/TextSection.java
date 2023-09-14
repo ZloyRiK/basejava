@@ -1,16 +1,16 @@
 package model;
 
-public class TextSection extends Section <String>{
+public class TextSection extends AbstractSection{
 
-    public TextSection(String description) {
-        super.description = description;
+
+    private String value;
+
+    public TextSection(String value) {
+        this.value = value;
     }
 
-    private String description;
 
-
-
-    public String getDescription() {
-        return description;
+    public String getValue() {
+        return value;
     }
 }
