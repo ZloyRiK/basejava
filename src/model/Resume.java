@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
+import static model.CompanySection.addCompany;
+
 /**
  * Initial resume class
  */
@@ -57,9 +59,17 @@ public class Resume {
         contacts.put(type, value);
     }
 
+    public void addExperience(String title, String subTitle, String description, Period period) {
+        addCompany(title, subTitle, description, period);
+    }
+
+    public void addEducation(String title, String subTitle, Period period) {
+        addCompany(title, subTitle, period);
+    }
+
     @Override
     public String toString() {
-        return uuid + '(' + fullName + ')';
+        return uuid + '(' + fullName + ')' + "\n" + contacts + '\n' + sections;
     }
 
     @Override
