@@ -46,7 +46,17 @@ public class TestResumeData {
 
 
     public static void main(String[] args) {
-        Resume resume = new Resume("Name");
+        Resume resume = new Resume("uuid1","Григорий Кислин");
+
+        resume.setContact(ContactType.PHONE , "+7(921) 855-0482");
+        resume.setContact(ContactType.MAIL , "gkislin@yandex.ru");
+        resume.setContact(ContactType.MESSENGER , "skype:grigory.kislin");
+        resume.setContact(ContactType.LINKEDIN , "https://www.linkedin.com/in/gkislin");
+        resume.setContact(ContactType.GITHUB , "https://github.com/gkislin");
+        resume.setContact(ContactType.STACKOVERFLOW , "https://stackoverflow.com/users/548473");
+        resume.setContact(ContactType.HOME_PAGE , "http://gkislin.ru/");
+
+
         List<String> achievementList = new LinkedList<>();
         achievementList.add(ach1);
         achievementList.add(ach2);
@@ -123,5 +133,6 @@ public class TestResumeData {
         resume.addEducation("Заочная физико-техническая школа при МФТИ","Закончил с отличием", new Period(9,1984 ,6,1987));
 
 
+        System.out.println(resume);
     }
 }

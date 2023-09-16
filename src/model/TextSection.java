@@ -43,6 +43,14 @@ public class TextSection extends AbstractSection {
 
     @Override
     public String toString() {
-        return subTitle + "\n" + description;
+        StringBuilder sb = new StringBuilder();
+        if (titleOfBlock != null) {
+            sb.append(titleOfBlock).append("\n");
+        }
+        if (subTitle != null) {
+            sb.append(subTitle).append("\n");
+        }
+        sb.append(description);
+        return sb.toString();
     }
 }
