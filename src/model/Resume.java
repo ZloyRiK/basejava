@@ -5,8 +5,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
-import static model.CompanySection.addCompany;
-
 /**
  * Initial resume class
  */
@@ -18,6 +16,9 @@ public class Resume {
 
     private final Map <SectionType, AbstractSection> sections = new HashMap<>();
     private final Map <ContactType, String> contacts = new HashMap<>();
+
+    protected static final Map <Period, TextSection> EXPERIENCE_MAP = new HashMap<>();
+    protected static final Map <Period, TextSection> EDUCATION_MAP = new HashMap<>();
 
     public String getFullName() {
         return fullName;
@@ -57,14 +58,6 @@ public class Resume {
 
     public void setContact(ContactType type, String value){
         contacts.put(type, value);
-    }
-
-    public void addExperience(String title, String subTitle, String description, Period period) {
-        addCompany(title, subTitle, description, period);
-    }
-
-    public void addEducation(String title, String subTitle, Period period) {
-        addCompany(title, subTitle, period);
     }
 
     @Override
