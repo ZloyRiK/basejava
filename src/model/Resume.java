@@ -17,9 +17,6 @@ public class Resume {
     private final Map <SectionType, AbstractSection> sections = new HashMap<>();
     private final Map <ContactType, String> contacts = new HashMap<>();
 
-    protected static final Map <Period, TextSection> EXPERIENCE_MAP = new HashMap<>();
-    protected static final Map <Period, TextSection> EDUCATION_MAP = new HashMap<>();
-
     public String getFullName() {
         return fullName;
     }

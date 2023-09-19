@@ -9,16 +9,44 @@ public class Period {
     private LocalDate start;
     private LocalDate finish;
 
-    public Period(int startMonth, int startYear, int finishMonth, int finishYear) {
-        if (startMonth == 0 || startYear == 0 || finishMonth == 0 || finishYear == 0){
-            throw new NullDateException("Дата не может содержать параметр равный 0");
-        }
-        this.start = LocalDate.of(startYear, startMonth, 1);
-        this.finish = LocalDate.of(finishYear, finishMonth, 1);
+    private String subtitle;
+
+    private String periodDescription;
+
+
+    public Period(LocalDate start, LocalDate finish, String subtitle, String periodDescription) {
+        this.start = start;
+        this.finish = finish;
+        this.subtitle = subtitle;
+        this.periodDescription = periodDescription;
+    }
+    public Period(LocalDate start, LocalDate finish, String subtitle) {
+        this.start = start;
+        this.finish = finish;
+        this.subtitle = subtitle;
     }
 
-    public Period(int startMonth, int startYear) {
+    public Period(int startMonth, int startYear, String subtitle, String periodDescription) {
+        checkPeriod(startMonth, startYear);
         this.start = LocalDate.of(startYear, startMonth, 1);
+        this.subtitle = subtitle;
+        this.periodDescription = periodDescription;
+    }
+
+    public Period(int startMonth, int startYear, int finishMonth, int finishYear, String subtitle) {
+        checkPeriod(startMonth, startYear, finishMonth, finishYear);
+        this.start = LocalDate.of(startYear, startMonth, 1);
+        this.finish = LocalDate.of(finishYear, finishMonth, 1);
+        this.subtitle = subtitle;
+    }
+
+
+    public Period(int startMonth, int startYear, int finishMonth, int finishYear, String subtitle, String periodDescription) {
+        checkPeriod(startMonth, startYear, finishMonth, finishYear);
+        this.start = LocalDate.of(startYear, startMonth, 1);
+        this.finish = LocalDate.of(finishYear, finishMonth, 1);
+        this.subtitle = subtitle;
+        this.periodDescription = periodDescription;
     }
 
     public LocalDate getStart() {
@@ -35,6 +63,33 @@ public class Period {
 
     public void setFinish(LocalDate finish) {
         this.finish = finish;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
+    }
+
+    public String getPeriodDescription() {
+        return periodDescription;
+    }
+
+    public void setPeriodDescription(String periodDescription) {
+        this.periodDescription = periodDescription;
+    }
+    private void checkPeriod(int startMonth, int startYear, int finishMonth, int finishYear) {
+        if (startMonth == 0 || startYear == 0 || finishMonth == 0 || finishYear == 0){
+            throw new NullDateException("Дата не может содержать параметр равный 0");
+        }
+    }
+
+    private void checkPeriod(int startMonth, int startYear) {
+        if (startMonth == 0 || startYear == 0){
+            throw new NullDateException("Дата не может содержать параметр равный 0");
+        }
     }
 
     @Override
@@ -55,6 +110,6 @@ public class Period {
         if (finish == null){
             return start.toString() + " - " + "По настоящее время";
         }
-        return start.toString() + " - " + finish.toString();
+        return start.toString() + " - " + finish.toString() + "\n" + subtitle + "\n" + periodDescription;
     }
 }

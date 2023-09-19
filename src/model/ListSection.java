@@ -4,14 +4,15 @@ import java.util.List;
 import java.util.Objects;
 
 public class ListSection extends AbstractSection{
-    List<String> elements;
+    private final List<String> list;
+
     public ListSection(List<String> elements) {
         Objects.requireNonNull(elements, "Elements of list can't be null");
-        this.elements=elements;
+        this.list =elements;
     }
 
-    public List<String> getElements(){
-        return elements;
+    public List<String> getList(){
+        return list;
     }
 
     @Override
@@ -19,19 +20,19 @@ public class ListSection extends AbstractSection{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ListSection that = (ListSection) o;
-        return elements.equals(that.elements);
+        return list.equals(that.list);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(elements);
+        return Objects.hash(list);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("List Section:\n");
-        for (String element : elements) {
+        for (String element : list) {
             sb.append("- ").append(element).append("\n");
         }
         return  sb.toString();
