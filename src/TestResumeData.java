@@ -47,13 +47,13 @@ public class TestResumeData {
     private static Company c1 = new Company(new Period(10, 2013,
             "Автор проекта",
             "Создание, организация и проведение Java онлайн проектов и стажировок."),
-            "Java Online Projects", "");
+            "Java Online Projects", "http://javaops.ru/");
     private static Company c2 = new Company(new Period( 10,2014,1,2016 ,
             "Старший разработчик (backend)",
             "Проектирование и разработка онлайн платформы управления проектами Wrike " +
                     "(Java 8 API, Maven, Spring, MyBatis, Guava, Vaadin, PostgreSQL, Redis). " +
                     "Двухфакторная аутентификация, авторизация по OAuth1, OAuth2, JWT SSO."),
-            "Wrike", "");
+            "Wrike", "https://www.wrike.com/");
     private static Company c3 = new Company(new Period(4,2012,10,2014,
             "Java архитектор",
             "Организация процесса разработки системы ERP для разных окружений: релизная политика, версионирование, ведение CI (Jenkins), " +
@@ -69,47 +69,47 @@ public class TestResumeData {
                     "Реализация клиентской и серверной части CRM. " +
                     "Реализация RIA-приложения для администрирования, мониторинга и анализа результатов в области алгоритмического трейдинга. " +
                     "JPA, Spring, Spring-MVC, GWT, ExtGWT (GXT), Highstock, Commet, HTML5."),
-            "Luxoft (Deutsche Bank)", "");
+            "Luxoft (Deutsche Bank)", "http://www.luxoft.ru/");
     private static Company c5 = new Company(new Period(6,2008,12,2010,
             "Ведущий специалист",
             "Дизайн и имплементация Java EE фреймворка для отдела \"Платежные Системы\" " +
                     "(GlassFish v2.1, v3, OC4J, EJB3, JAX-WS RI 2.1, Servlet 2.4, JSP, JMX, JMS, Maven2)." +
                     "Реализация администрирования, статистики и мониторинга фреймворка. Разработка online JMX клиента (Python/ Jython, Django, ExtJS)"),
-            "Yota", "");
+            "Yota", "https://www.yota.ru/");
     private static Company c6 = new Company(new Period(3,2007, 6,2008,
             "Разработчик ПО",
             "Реализация клиентской (Eclipse RCP) и серверной (JBoss 4.2, Hibernate 3.0, Tomcat, JMS) частей кластерного J2EE приложения (OLAP, Data mining)."),
-            "Enkata", "");
+            "Enkata", "http://enkata.com/");
     private static Company c7 = new Company(new Period(1,2005,2,2007,
             "Разработчик ПО",
             "Тестирование, отладка, внедрение ПО цифровой телефонной станции Alcatel 1000 S12 (CHILL, ASM)."),
-            "Siemens AG", "");
+            "Siemens AG", "https://www.siemens.com/ru/ru/home.html");
     private static Company c8 = new Company(new Period(9,1997,1,2005,
             "Инженер по аппаратному и программному тестированию",
             "Тестирование, отладка, внедрение ПО цифровой телефонной станции Alcatel 1000 S12 (CHILL, ASM)."),
-            "Alcatel", "");
+            "Alcatel", "http://www.alcatel.ru/");
 
     private static Company e1 = new Company(new Period(3,2013,5,2013,
             "'Functional Programming Principles in Scala' by Martin Odersky"),
-            "Coursera", "");
+            "Coursera", "https://www.coursera.org/course/progfun");
     private static Company e2 = new Company(new Period(3,2011,4,2011,
             "Курс 'Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML.'"),
-            "Luxoft", "");
+            "Luxoft", "http://www.luxoft-training.ru/training/catalog/course.html?ID=22366");
     private static Company e3 = new Company(new Period(1,2005,4,2005,
             "3 месяца обучения мобильным IN сетям (Берлин)"),
-            "Siemens AG", "");
+            "Siemens AG", "http://www.luxoft-training.ru/training/catalog/course.html?ID=22366");
     private static Company e4 = new Company(new Period(9,1997,3,1998,
             "6 месяцев обучения цифровым телефонным сетям (Москва)"),
-            "Alcatel", "");
+            "Alcatel", "http://www.alcatel.ru/");
     private static Company e5 = new Company(new Period(9,1993,7,1996,
             "Аспирантура (программист С, С++)"),
-            "Санкт-Петербургский национальный исследовательский университет информационных технологий, механики и оптики", "");
+            "Санкт-Петербургский национальный исследовательский университет информационных технологий, механики и оптики", "https://mipt.ru/");
     private static Company e6 = new Company(new Period(9,1987,7,1993,
             "Инженер (программист Fortran, C)"),
-            "Санкт-Петербургский национальный исследовательский университет информационных технологий, механики и оптики", "");
+            "Санкт-Петербургский национальный исследовательский университет информационных технологий, механики и оптики", "https://mipt.ru/");
     private static Company e7 = new Company(new Period(9,1984 ,6,1987,
             "Закончил с отличием"),
-            "Заочная физико-техническая школа при МФТИ", "");
+            "Заочная физико-техническая школа при МФТИ", "https://mipt.ru/");
 
 
     public static void main(String[] args) {
