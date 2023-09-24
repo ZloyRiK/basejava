@@ -15,12 +15,18 @@ public class Period {
 
 
     public Period(LocalDate start, LocalDate finish, String subtitle, String periodDescription) {
+        Objects.requireNonNull(start, "Start date value can't be null");
+        Objects.requireNonNull(finish, "Finish date value can't be null");
+        Objects.requireNonNull(subtitle, "Subtitle value can't be null");
+        Objects.requireNonNull(periodDescription, "Period description value can't be null");
         this.start = start;
         this.finish = finish;
         this.subtitle = subtitle;
         this.periodDescription = periodDescription;
     }
     public Period(LocalDate start, LocalDate finish, String subtitle) {
+        Objects.requireNonNull(start, "Start date value can't be null");
+        Objects.requireNonNull(finish, "Finish date value can't be null");
         this.start = start;
         this.finish = finish;
         this.subtitle = subtitle;
@@ -28,12 +34,15 @@ public class Period {
 
     public Period(int startMonth, int startYear, String subtitle, String periodDescription) {
         checkPeriod(startMonth, startYear);
+        Objects.requireNonNull(subtitle, "Subtitle value can't be null");
+        Objects.requireNonNull(periodDescription, "Period description value can't be null");
         this.start = LocalDate.of(startYear, startMonth, 1);
         this.subtitle = subtitle;
         this.periodDescription = periodDescription;
     }
 
     public Period(int startMonth, int startYear, int finishMonth, int finishYear, String subtitle) {
+        Objects.requireNonNull(subtitle, "Subtitle value can't be null");
         checkPeriod(startMonth, startYear, finishMonth, finishYear);
         this.start = LocalDate.of(startYear, startMonth, 1);
         this.finish = LocalDate.of(finishYear, finishMonth, 1);
@@ -42,6 +51,8 @@ public class Period {
 
 
     public Period(int startMonth, int startYear, int finishMonth, int finishYear, String subtitle, String periodDescription) {
+        Objects.requireNonNull(subtitle, "Subtitle value can't be null");
+        Objects.requireNonNull(periodDescription, "Period description value can't be null");
         checkPeriod(startMonth, startYear, finishMonth, finishYear);
         this.start = LocalDate.of(startYear, startMonth, 1);
         this.finish = LocalDate.of(finishYear, finishMonth, 1);

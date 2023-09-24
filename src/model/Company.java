@@ -10,6 +10,8 @@ public class Company {
     private String website;
 
     public Company(Period period, String companyName, String website) {
+        Objects.requireNonNull(period, "Period value can't be null");
+        Objects.requireNonNull(companyName, "Company name value can't be null");
         this.periods.add(period);
         this.companyName = companyName;
         this.website = website;
@@ -24,6 +26,7 @@ public class Company {
     }
 
     public void setCompanyName(String companyName) {
+        Objects.requireNonNull(companyName, "Company name value can't be null");
         this.companyName = companyName;
     }
 
