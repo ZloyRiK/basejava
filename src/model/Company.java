@@ -6,14 +6,14 @@ import java.util.Objects;
 
 public class Company {
     private List<Period> periods = new LinkedList<>();
-    private String companyName;
+    private String name;
     private String website;
 
-    public Company(Period period, String companyName, String website) {
+    public Company(Period period, String name, String website) {
         Objects.requireNonNull(period, "Period value can't be null");
-        Objects.requireNonNull(companyName, "Company name value can't be null");
+        Objects.requireNonNull(name, "Company name value can't be null");
         this.periods.add(period);
-        this.companyName = companyName;
+        this.name = name;
         this.website = website;
     }
 
@@ -21,13 +21,13 @@ public class Company {
         return periods;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public String getName() {
+        return name;
     }
 
-    public void setCompanyName(String companyName) {
-        Objects.requireNonNull(companyName, "Company name value can't be null");
-        this.companyName = companyName;
+    public void setName(String name) {
+        Objects.requireNonNull(name, "Company name value can't be null");
+        this.name = name;
     }
 
     public String getWebsite() {
@@ -43,12 +43,12 @@ public class Company {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Company company = (Company) o;
-        return periods.equals(company.periods) && companyName.equals(company.companyName) && website.equals(company.website);
+        return periods.equals(company.periods) && name.equals(company.name) && website.equals(company.website);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(periods, companyName, website);
+        return Objects.hash(periods, name, website);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class Company {
         StringBuilder sb = new StringBuilder();
         for (Period period : periods) {
             sb.append(website).append("\n");
-            sb.append(companyName).append("\n");
+            sb.append(name).append("\n");
             sb.append(period.toString()).append("\n");
         }
         return sb.toString();
