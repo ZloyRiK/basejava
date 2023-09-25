@@ -74,6 +74,6 @@ public class TextSection extends AbstractSection {
             sb.append(subTitle).append("\n");
         }
         sb.append(description);
-        return sb.toString();
+        return sb.toString() +"\n";
     }
 }

@@ -119,7 +119,7 @@ public class Period {
     @Override
     public String toString() {
         if (finish == null){
-            return start.toString() + " - " + "По настоящее время";
+            return start.toString() + " - " + "По настоящее время" + "\n" + subtitle + "\n" + periodDescription;
         }
         return start.toString() + " - " + finish.toString() + "\n" + subtitle + "\n" + periodDescription;
     }
