@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,7 +9,12 @@ public class ListSection extends AbstractSection{
 
     public ListSection(List<String> elements) {
         Objects.requireNonNull(elements, "Elements of list can't be null");
-        this.list =elements;
+        this.list = elements;
+    }
+
+    public ListSection(String... elements) {
+        Objects.requireNonNull(elements, "Elements of list can't be null");
+        this.list = Arrays.asList(elements);
     }
 
     public List<String> getList(){

@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -13,6 +14,14 @@ public class Company {
         Objects.requireNonNull(period, "Period value can't be null");
         Objects.requireNonNull(name, "Company name value can't be null");
         this.periods.add(period);
+        this.name = name;
+        this.website = website;
+    }
+
+    public Company(String name, String website, Period... period) {
+        Objects.requireNonNull(period, "Period value can't be null");
+        Objects.requireNonNull(name, "Company name value can't be null");
+        this.periods = Arrays.asList(period);
         this.name = name;
         this.website = website;
     }
