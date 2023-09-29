@@ -2,8 +2,10 @@ package storage;
 
 import exeption.ExistStorageException;
 import exeption.NotExistStorageException;
+import exeption.StorageException;
 import model.Resume;
 
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 
@@ -21,7 +23,11 @@ public abstract class AbstractStorage<SearchKey> implements Storage {
     @Override
     public final Resume get(String uuid) {
         SearchKey searchKey = getExistSearchKey(uuid);
-        return doGet(searchKey);
+        try {
+            return doGet(searchKey);
+        } catch (IOException e) {
+            throw new StorageException("File storage error", uuid, e);
+        }
     }
 
     @Override
@@ -75,7 +81,7 @@ public abstract class AbstractStorage<SearchKey> implements Storage {
 
     protected abstract void doUpdate(Resume r, SearchKey searchKey);
 
-    protected abstract Resume doGet(SearchKey searchKey);
+    protected abstract Resume doGet(SearchKey searchKey) throws IOException;
 
     protected abstract boolean isExist(SearchKey searchKey);
 

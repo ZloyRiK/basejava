@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 public abstract class AbstractFileStorage extends AbstractStorage<File> {
-    private File directory;
+    private final File directory;
 
     public AbstractFileStorage(File directory) {
         Objects.requireNonNull(directory, "Directory can't be null");
@@ -41,7 +41,11 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
 
     @Override
     protected void doDelete(File file) {
-        file.delete();
+        try {
+            file.delete();
+        } catch (StorageException e) {
+            throw new StorageException("Error to file delete", file.getName());
+        }
     }
 
     @Override
@@ -54,7 +58,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     }
 
     @Override
-    protected Resume doGet(File file) {
+    protected Resume doGet(File file) throws IOException {
         return doRead(file);
     }
 
@@ -67,24 +71,41 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     @Override
     protected List<Resume> doGetAll() {
         List<Resume> list = new ArrayList<>();
-        for (File file : Objects.requireNonNull(directory.listFiles())) {
-            list.add(doRead(file));
+        try {
+            for (File file : Objects.requireNonNull(directory.listFiles())) {
+                try {
+                    list.add(doGet(file));
+                } catch (IOException e) {
+                    throw new StorageException("IO error", file.getName(), e);
+                }
+            }
+        } catch (NullPointerException e) {
+            throw new StorageException("Directory is null", null, e);
         }
         return list;
     }
 
     @Override
     public void clear() {
-        for (File file : Objects.requireNonNull(directory.listFiles())) {
+        try {
+            for (File file : Objects.requireNonNull(directory.listFiles())) {
                 doDelete(file);
+            }
+        } catch (NullPointerException e) {
+            throw new StorageException("Directory returns null", null, e);
         }
     }
 
     @Override
     public int size() {
-        return Objects.requireNonNull(directory.listFiles()).length;
+        try {
+            return Objects.requireNonNull(directory.listFiles()).length;
+        } catch (NullPointerException e) {
+            throw new StorageException("Directory returns null", null, e);
+        }
     }
 
     protected abstract void doWrite(Resume r, File file) throws IOException;
-    protected abstract Resume doRead(File file);
+
+    protected abstract Resume doRead(File file) throws IOException;
 }
