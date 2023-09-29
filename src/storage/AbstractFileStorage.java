@@ -58,8 +58,12 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     }
 
     @Override
-    protected Resume doGet(File file) throws IOException {
-        return doRead(file);
+    protected Resume doGet(File file) {
+        try {
+            return doRead(file);
+        } catch (IOException e) {
+            throw new StorageException("IO error", file.getName(), e);
+        }
     }
 
 
@@ -71,38 +75,31 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     @Override
     protected List<Resume> doGetAll() {
         List<Resume> list = new ArrayList<>();
-        try {
-            for (File file : Objects.requireNonNull(directory.listFiles())) {
-                try {
-                    list.add(doGet(file));
-                } catch (IOException e) {
-                    throw new StorageException("IO error", file.getName(), e);
-                }
-            }
-        } catch (NullPointerException e) {
-            throw new StorageException("Directory is null", null, e);
+        for (File file : notNullDirectoryArray()) {
+            list.add(doGet(file));
         }
         return list;
     }
 
     @Override
     public void clear() {
-        try {
-            for (File file : Objects.requireNonNull(directory.listFiles())) {
-                doDelete(file);
-            }
-        } catch (NullPointerException e) {
-            throw new StorageException("Directory returns null", null, e);
+        for (File file : notNullDirectoryArray()) {
+            doDelete(file);
         }
     }
 
+
     @Override
     public int size() {
-        try {
-            return Objects.requireNonNull(directory.listFiles()).length;
-        } catch (NullPointerException e) {
-            throw new StorageException("Directory returns null", null, e);
+        return notNullDirectoryArray().length;
+    }
+
+    private File[] notNullDirectoryArray() {
+        File[] dirArray = directory.listFiles();
+        if (dirArray == null) {
+            throw new StorageException("Directory returns null", null);
         }
+        return dirArray;
     }
 
     protected abstract void doWrite(Resume r, File file) throws IOException;
