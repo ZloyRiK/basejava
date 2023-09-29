@@ -84,7 +84,7 @@ abstract class AbstractStorageTest {
     @BeforeEach
     public void setUp() {
         storage.clear();
-        fillTestResume(R1);
+        ResumeTestData.createTestResume(UUID_1, NAME_1);
         fillTestResume(R2);
         fillTestResume(R3);
         storage.save(R1);

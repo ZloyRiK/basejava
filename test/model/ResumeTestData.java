@@ -1,9 +1,9 @@
-import model.*;
+package model;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class TestResumeData {
+public class ResumeTestData {
 
     private static String ach1 = "Организация команды и успешная реализация " +
             "Java проектов для сторонних заказчиков: приложения автопарк на стеке Spring Cloud/микросервисы, " +
