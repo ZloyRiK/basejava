@@ -11,13 +11,13 @@ public class MainFile {
             for (int i = 0; i < Objects.requireNonNull(files).length; i++) {
                 if (files[i].isDirectory()){
                     try {
-                        System.out.println("\t" + files[i].getName());
+                        System.out.println("Directory: " + files[i].getName());
                         printFiles(files[i].getCanonicalPath());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                 } else {
-                    System.out.println(files[i].getName());
+                    System.out.println("\t"+files[i].getName());
                 }
             }
         }
