@@ -3,17 +3,19 @@ package storage;
 import exeption.ExistStorageException;
 import exeption.NotExistStorageException;
 import exeption.StorageException;
-import model.*;
+import model.Resume;
+import model.ResumeTestData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 
 abstract class AbstractStorageTest {
-
+    protected static final File STORAGE_DIR = new File("C:\\Users\\zlori\\Desktop\\basejava_Learning\\basejava\\storage");
     protected Storage storage;
     protected static final String UUID_1 = "uuid1";
     protected static final String UUID_2 = "uuid2";

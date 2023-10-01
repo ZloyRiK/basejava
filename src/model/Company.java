@@ -1,11 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class Company {
+public class Company implements Serializable {
+    private static final long serialVersionUID = 1L;
     private List<Period> periods = new LinkedList<>();
     private String name;
     private String website;
