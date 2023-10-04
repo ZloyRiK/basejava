@@ -2,6 +2,7 @@ package storage;
 
 import exeption.StorageException;
 import model.Resume;
+import storage.strategy.StorageStrategy;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,8 +11,9 @@ import java.util.Objects;
 
 public abstract class AbstractFileStorage extends AbstractStorage<File> {
     private final File directory;
+    protected StorageStrategy strategy;
 
-    public AbstractFileStorage(File directory) {
+    public AbstractFileStorage(File directory, StorageStrategy strategy) {
         Objects.requireNonNull(directory, "Directory can't be null");
         if (!directory.isDirectory()) {
             throw new IllegalArgumentException(directory.getAbsolutePath() + " is not a directory");
@@ -20,6 +22,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
             throw new IllegalArgumentException(directory.getAbsolutePath() + " is not a readable/writable");
         }
         this.directory = directory;
+        this.strategy= strategy;
     }
 
     @Override
@@ -31,7 +34,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     protected void doSave(Resume r, File file) {
         try {
             file.createNewFile();
-            doWrite(r, new BufferedOutputStream(new FileOutputStream(file)));
+            strategy.doWrite(r, new BufferedOutputStream(new FileOutputStream(file)));
         } catch (IOException e) {
             throw new StorageException("Can't make new file" + file.getAbsolutePath(), file.getName(), e);
         }
@@ -51,7 +54,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     @Override
     protected void doUpdate(Resume r, File file) {
         try {
-            doWrite(r, new BufferedOutputStream(new FileOutputStream(file)));
+            strategy.doWrite(r, new BufferedOutputStream(new FileOutputStream(file)));
         } catch (IOException e) {
             throw new StorageException("IO error", file.getName(), e);
         }
@@ -60,7 +63,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     @Override
     protected Resume doGet(File file) {
         try {
-            return doRead(new FileInputStream(file));
+            return strategy.doRead(new FileInputStream(file));
         } catch (IOException e) {
             throw new StorageException("IO error", file.getName(), e);
         }
