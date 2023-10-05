@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public abstract class AbstractPathStorage extends AbstractStorage<Path> {
     private final Path directory;
@@ -80,7 +81,7 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
     @Override
     protected List<Resume> doGetAll() {
         List<Resume> list = new ArrayList<>();
-        for (Path path : notNullDirectoryArray()) {
+        for (Path path : notNullDirectoryList()) {
             list.add(doGet(path));
         }
         return list;
@@ -98,20 +99,16 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
 
     @Override
     public int size() {
-        return notNullDirectoryArray().length;
+        return notNullDirectoryList().size();
     }
 
-    private Path[] notNullDirectoryArray() {
+    private List<Path> notNullDirectoryList() {
         Path[] dirArray;
-        try {
-            dirArray = Files.list(directory).toArray(Path[]::new);
+        try (Stream<Path> pathStream = Files.list(directory)) {
+            return pathStream.toList();
         } catch (IOException e) {
             throw new StorageException("Can't read directory ", null, e);
         }
-        if (dirArray == null) {
-            throw new StorageException("Directory returns null ", null);
-        }
-        return dirArray;
     }
 
     protected abstract void doWrite(Resume r, OutputStream os) throws IOException;
