@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class MainFile {
-    private static void printFiles(String path){
+    private static void printFiles(String path, int level){
         File dir = new File (path);
         File[] files;
         if(dir.isDirectory()){
@@ -11,16 +11,24 @@ public class MainFile {
             for (int i = 0; i < Objects.requireNonNull(files).length; i++) {
                 if (files[i].isDirectory()){
                     try {
-                        System.out.println("Directory: " + files[i].getName());
-                        printFiles(files[i].getCanonicalPath());
+                        System.out.println(getIndent(level)+"Directory: " + files[i].getName());
+                        printFiles(files[i].getCanonicalPath(), level*2);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                 } else {
-                    System.out.println("\t"+files[i].getName());
+                    System.out.println(getIndent(level)+"-"+files[i].getName());
                 }
             }
         }
+    }
+
+    private static String getIndent(int level) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < level; i++) {
+            sb.append("  ");
+        }
+        return sb.toString();
     }
     public static void main(String[] args) {
 //        File filePath = new File("../gitignore");
@@ -42,7 +50,7 @@ public class MainFile {
 //        } catch (IOException e) {
 //            throw new RuntimeException(e);
 //        }
-        printFiles("./src/");
+        printFiles("./src/", 2);
     }
 
 }
