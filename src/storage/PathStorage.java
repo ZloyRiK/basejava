@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-public abstract class AbstractPathStorage extends AbstractStorage<Path> {
+public class PathStorage extends AbstractStorage<Path> {
     private final Path directory;
     protected StorageStrategy strategy;
 
-    public AbstractPathStorage(String dir, StorageStrategy strategy) {
+    public PathStorage(String dir, StorageStrategy strategy) {
         this.directory = Paths.get(dir);
         Objects.requireNonNull(directory, "Directory can't be null");
         if (!Files.isDirectory(directory)) {
@@ -59,7 +59,7 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
         try {
            strategy.doWrite(r, new BufferedOutputStream(new FileOutputStream(path.toFile())));
         } catch (IOException e) {
-            throw new StorageException("IO error", String.valueOf(path.getFileName()), e);
+            throw new StorageException("Update path error", String.valueOf(path.getFileName()), e);
         }
     }
 
@@ -68,7 +68,7 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
         try {
             return strategy.doRead(new FileInputStream(path.toFile()));
         } catch (IOException e) {
-            throw new StorageException("IO error", String.valueOf(path.getFileName()), e);
+            throw new StorageException("Can't get file by path", String.valueOf(path.getFileName()), e);
         }
     }
 
@@ -103,15 +103,10 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
     }
 
     private List<Path> notNullDirectoryList() {
-        Path[] dirArray;
         try (Stream<Path> pathStream = Files.list(directory)) {
             return pathStream.toList();
         } catch (IOException e) {
             throw new StorageException("Can't read directory ", null, e);
         }
     }
-
-    protected abstract void doWrite(Resume r, OutputStream os) throws IOException;
-
-    protected abstract Resume doRead(InputStream is) throws IOException;
 }

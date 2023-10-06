@@ -2,7 +2,6 @@ package storage.strategy;
 
 import exeption.StorageException;
 import model.Resume;
-import storage.strategy.StorageStrategy;
 
 import java.io.*;
 
