@@ -1,8 +1,5 @@
 package model;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class ResumeTestData {
 
     private static String ach1 = "Организация команды и успешная реализация " +
@@ -36,7 +33,7 @@ public class ResumeTestData {
     private static String q7 = "Python: Django.";
     private static String q8 = "JavaScript: jQuery, ExtJS, Bootstrap.js, underscore.js";
     private static String q9 = "Scala: SBT, Play2, Specs2, Anorm, Spray, Akka";
-    private static String q10 =  "Технологии: Servlet, JSP/JSTL, JAX-WS, REST, EJB," +
+    private static String q10 = "Технологии: Servlet, JSP/JSTL, JAX-WS, REST, EJB," +
             " RMI, JMS, JavaMail, JAXB, StAX, SAX, DOM, XSLT, MDB, JMX, JDBC, JPA, JNDI, JAAS, SOAP, AJAX, Commet, " +
             "HTML5, ESB, CMIS, BPMN2, LDAP, OAuth1, OAuth2, JWT.";
     private static String q11 = "Инструменты: Maven + plugin development, Gradle, настройка Ngnix";
@@ -48,13 +45,13 @@ public class ResumeTestData {
             "Автор проекта",
             "Создание, организация и проведение Java онлайн проектов и стажировок."),
             "Java Online Projects", "http://javaops.ru/");
-    private static Company c2 = new Company(new Period( 10,2014,1,2016 ,
+    private static Company c2 = new Company(new Period(10, 2014, 1, 2016,
             "Старший разработчик (backend)",
             "Проектирование и разработка онлайн платформы управления проектами Wrike " +
                     "(Java 8 API, Maven, Spring, MyBatis, Guava, Vaadin, PostgreSQL, Redis). " +
                     "Двухфакторная аутентификация, авторизация по OAuth1, OAuth2, JWT SSO."),
             "Wrike", "https://www.wrike.com/");
-    private static Company c3 = new Company(new Period(4,2012,10,2014,
+    private static Company c3 = new Company(new Period(4, 2012, 10, 2014,
             "Java архитектор",
             "Организация процесса разработки системы ERP для разных окружений: релизная политика, версионирование, ведение CI (Jenkins), " +
                     "миграция базы (кастомизация Flyway), конфигурирование системы (pgBoucer, Nginx), AAA via SSO. Архитектура БД и серверной части системы. " +
@@ -63,122 +60,78 @@ public class ResumeTestData {
                     "Maven + plugin development, Ant, Apache Commons, Spring security, Spring MVC, Tomcat, WSO2, xcmis, OpenCmis, Bonita, " +
                     "Python scripting, Unix shell remote scripting via ssh tunnels, PL/Python"),
             "RIT Center", "");
-    private static Company c4 = new Company(new Period(12,2010,4,2012,
+    private static Company c4 = new Company(new Period(12, 2010, 4, 2012,
             "Ведущий программист",
             "Участие в проекте Deutsche Bank CRM (WebLogic, Hibernate, Spring, Spring MVC, SmartGWT, GWT, Jasper, Oracle). " +
                     "Реализация клиентской и серверной части CRM. " +
                     "Реализация RIA-приложения для администрирования, мониторинга и анализа результатов в области алгоритмического трейдинга. " +
                     "JPA, Spring, Spring-MVC, GWT, ExtGWT (GXT), Highstock, Commet, HTML5."),
             "Luxoft (Deutsche Bank)", "http://www.luxoft.ru/");
-    private static Company c5 = new Company(new Period(6,2008,12,2010,
+    private static Company c5 = new Company(new Period(6, 2008, 12, 2010,
             "Ведущий специалист",
             "Дизайн и имплементация Java EE фреймворка для отдела \"Платежные Системы\" " +
                     "(GlassFish v2.1, v3, OC4J, EJB3, JAX-WS RI 2.1, Servlet 2.4, JSP, JMX, JMS, Maven2)." +
                     "Реализация администрирования, статистики и мониторинга фреймворка. Разработка online JMX клиента (Python/ Jython, Django, ExtJS)"),
             "Yota", "https://www.yota.ru/");
-    private static Company c6 = new Company(new Period(3,2007, 6,2008,
+    private static Company c6 = new Company(new Period(3, 2007, 6, 2008,
             "Разработчик ПО",
             "Реализация клиентской (Eclipse RCP) и серверной (JBoss 4.2, Hibernate 3.0, Tomcat, JMS) частей кластерного J2EE приложения (OLAP, Data mining)."),
             "Enkata", "http://enkata.com/");
-    private static Company c7 = new Company(new Period(1,2005,2,2007,
+    private static Company c7 = new Company(new Period(1, 2005, 2, 2007,
             "Разработчик ПО",
             "Тестирование, отладка, внедрение ПО цифровой телефонной станции Alcatel 1000 S12 (CHILL, ASM)."),
             "Siemens AG", "https://www.siemens.com/ru/ru/home.html");
-    private static Company c8 = new Company(new Period(9,1997,1,2005,
+    private static Company c8 = new Company(new Period(9, 1997, 1, 2005,
             "Инженер по аппаратному и программному тестированию",
             "Тестирование, отладка, внедрение ПО цифровой телефонной станции Alcatel 1000 S12 (CHILL, ASM)."),
             "Alcatel", "http://www.alcatel.ru/");
 
-    private static Company e1 = new Company(new Period(3,2013,5,2013,
+    private static Company e1 = new Company(new Period(3, 2013, 5, 2013,
             "'Functional Programming Principles in Scala' by Martin Odersky"),
             "Coursera", "https://www.coursera.org/course/progfun");
-    private static Company e2 = new Company(new Period(3,2011,4,2011,
+    private static Company e2 = new Company(new Period(3, 2011, 4, 2011,
             "Курс 'Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML.'"),
             "Luxoft", "http://www.luxoft-training.ru/training/catalog/course.html?ID=22366");
-    private static Company e3 = new Company(new Period(1,2005,4,2005,
+    private static Company e3 = new Company(new Period(1, 2005, 4, 2005,
             "3 месяца обучения мобильным IN сетям (Берлин)"),
             "Siemens AG", "http://www.luxoft-training.ru/training/catalog/course.html?ID=22366");
-    private static Company e4 = new Company(new Period(9,1997,3,1998,
+    private static Company e4 = new Company(new Period(9, 1997, 3, 1998,
             "6 месяцев обучения цифровым телефонным сетям (Москва)"),
             "Alcatel", "http://www.alcatel.ru/");
-    private static Company e5 = new Company(new Period(9,1993,7,1996,
+    private static Company e5 = new Company(new Period(9, 1993, 7, 1996,
             "Аспирантура (программист С, С++)"),
             "Санкт-Петербургский национальный исследовательский университет информационных технологий, механики и оптики", "https://mipt.ru/");
-    private static Company e6 = new Company(new Period(9,1987,7,1993,
+    private static Company e6 = new Company(new Period(9, 1987, 7, 1993,
             "Инженер (программист Fortran, C)"),
             "Санкт-Петербургский национальный исследовательский университет информационных технологий, механики и оптики", "https://mipt.ru/");
-    private static Company e7 = new Company(new Period(9,1984 ,6,1987,
+    private static Company e7 = new Company(new Period(9, 1984, 6, 1987,
             "Закончил с отличием"),
             "Заочная физико-техническая школа при МФТИ", "https://mipt.ru/");
 
-    public static Resume createTestResume(String uuid, String fullName){
-        Resume resume = new Resume(uuid,fullName);
+    public static Resume createTestResume(String uuid, String fullName) {
+        Resume resume = new Resume(uuid, fullName);
 
-        resume.setContact(ContactType.PHONE , "+7(921) 855-0482");
-        resume.setContact(ContactType.MAIL , "gkislin@yandex.ru");
-        resume.setContact(ContactType.MESSENGER , "skype:grigory.kislin");
-        resume.setContact(ContactType.LINKEDIN , "https://www.linkedin.com/in/gkislin");
-        resume.setContact(ContactType.GITHUB , "https://github.com/gkislin");
-        resume.setContact(ContactType.STACKOVERFLOW , "https://stackoverflow.com/users/548473");
-        resume.setContact(ContactType.HOME_PAGE , "http://gkislin.ru/");
+        resume.setContact(ContactType.PHONE, "+7(921) 855-0482");
+        resume.setContact(ContactType.MAIL, "gkislin@yandex.ru");
+        resume.setContact(ContactType.MESSENGER, "skype:grigory.kislin");
+        resume.setContact(ContactType.LINKEDIN, "https://www.linkedin.com/in/gkislin");
+        resume.setContact(ContactType.GITHUB, "https://github.com/gkislin");
+        resume.setContact(ContactType.STACKOVERFLOW, "https://stackoverflow.com/users/548473");
+        resume.setContact(ContactType.HOME_PAGE, "http://gkislin.ru/");
 
-
-        List<String> achievementList = new LinkedList<>();
-        achievementList.add(ach1);
-        achievementList.add(ach2);
-        achievementList.add(ach3);
-        achievementList.add(ach4);
-        achievementList.add(ach5);
-        achievementList.add(ach6);
-        achievementList.add(ach7);
-
-        List<String> qualificationsList = new LinkedList<>();
-        qualificationsList.add(q1);
-        qualificationsList.add(q2);
-        qualificationsList.add(q3);
-        qualificationsList.add(q4);
-        qualificationsList.add(q5);
-        qualificationsList.add(q6);
-        qualificationsList.add(q7);
-        qualificationsList.add(q8);
-        qualificationsList.add(q9);
-        qualificationsList.add(q10);
-        qualificationsList.add(q11);
-        qualificationsList.add(q12);
-        qualificationsList.add(q13);
-        qualificationsList.add(q14);
-
-        List<Company> companyList = new LinkedList<>();
-        companyList.add(c1);
-        companyList.add(c2);
-        companyList.add(c3);
-        companyList.add(c4);
-        companyList.add(c5);
-        companyList.add(c6);
-        companyList.add(c7);
-        companyList.add(c8);
-
-        List<Company> educationList = new LinkedList<>();
-        companyList.add(e1);
-        companyList.add(e2);
-        companyList.add(e3);
-        companyList.add(e4);
-        companyList.add(e5);
-        companyList.add(e6);
-        companyList.add(e7);
 
         resume.setSection(SectionType.PERSONAL, new TextSection("Аналитический склад ума, сильная логика, креативность, инициативность. Пурист кода и архитектуры."));
         resume.setSection(SectionType.OBJECTIVE, new TextSection("Ведущий стажировок и корпоративного обучения по Java Web и Enterprise технологиям "));
-        resume.setSection(SectionType.ACHIEVEMENT, new ListSection(achievementList));
-        resume.setSection(SectionType.QUALIFICATIONS, new ListSection(qualificationsList));
-        resume.setSection(SectionType.EXPERIENCE,  new CompanySection(companyList));
-        resume.setSection(SectionType.EDUCATION, new CompanySection(educationList));
+        resume.setSection(SectionType.ACHIEVEMENT, new ListSection(ach1, ach2, ach3, ach4, ach5, ach6, ach7));
+        resume.setSection(SectionType.QUALIFICATIONS, new ListSection(q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14));
+        resume.setSection(SectionType.EXPERIENCE, new CompanySection(c1, c2, c3, c4, c5, c6, c7, c8));
+        resume.setSection(SectionType.EDUCATION, new CompanySection(e1, e2, e3, e4, e5, e6, e7));
 
         return resume;
     }
 
     public static void main(String[] args) {
-        Resume resume = createTestResume("uuid1","Григорий Кислин");
+        Resume resume = createTestResume("uuid1", "Григорий Кислин");
 
         System.out.println(resume);
     }

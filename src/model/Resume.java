@@ -1,5 +1,9 @@
 package model;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,10 +13,12 @@ import java.util.UUID;
 /**
  * Initial resume class
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Resume implements Serializable {
     private static final long serialVersionUID = 1L;
     // Unique identifier
-    private final String uuid;
+    private String uuid;
     private String fullName;
 
     private final Map <SectionType, AbstractSection> sections = new HashMap<>();
@@ -26,6 +32,8 @@ public class Resume implements Serializable {
         this.fullName = fullName;
     }
 
+    public Resume(){
+    }
     public Resume(String uuid, String fullName) {
         Objects.requireNonNull(uuid, "Uuid can't be null");
         Objects.requireNonNull(fullName, "FullName can't be null");
@@ -68,12 +76,11 @@ public class Resume implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Resume resume = (Resume) o;
-        if (!uuid.equals(resume.uuid)) return false;
-        return fullName.equals(resume.fullName);
+        return uuid.equals(resume.uuid) && fullName.equals(resume.fullName) && sections.equals(resume.sections) && contacts.equals(resume.contacts);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid, fullName);
+        return Objects.hash(uuid, fullName, sections, contacts);
     }
 }

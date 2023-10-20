@@ -12,6 +12,9 @@ public class Company implements Serializable {
     private String name;
     private String website;
 
+    public Company() {
+    }
+
     public Company(Period period, String name, String website) {
         Objects.requireNonNull(period, "Period value can't be null");
         Objects.requireNonNull(name, "Company name value can't be null");

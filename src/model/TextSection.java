@@ -9,6 +9,9 @@ public class TextSection extends AbstractSection {
     private String subTitle;
     private String description;
 
+    public TextSection() {
+    }
+
     public TextSection(String description) {
         Objects.requireNonNull(description, "Text value can't be null");
         this.description = description;

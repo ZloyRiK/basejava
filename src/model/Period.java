@@ -15,6 +15,8 @@ public class Period implements Serializable {
 
     private String periodDescription;
 
+    public Period() {
+    }
 
     public Period(LocalDate start, LocalDate finish, String subtitle, String periodDescription) {
         Objects.requireNonNull(start, "Start date value can't be null");
