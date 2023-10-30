@@ -17,23 +17,49 @@ import java.util.UUID;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Resume implements Serializable {
     private static final long serialVersionUID = 1L;
+
+
     // Unique identifier
     private String uuid;
     private String fullName;
+    private final Map<SectionType, AbstractSection> sections = new HashMap<>();
+    private final Map<ContactType, String> contacts = new HashMap<>();
 
-    private final Map <SectionType, AbstractSection> sections = new HashMap<>();
-    private final Map <ContactType, String> contacts = new HashMap<>();
+    public String getUuid() {
+        return uuid;
+    }
 
     public String getFullName() {
         return fullName;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
-    public Resume(){
+    public Map<SectionType, AbstractSection> getSections() {
+        return sections;
     }
+
+    public Map<ContactType, String> getContacts() {
+        return contacts;
+    }
+
+    public void setSection(SectionType type, AbstractSection section) {
+        sections.put(type, section);
+    }
+
+    public void setContact(ContactType type, String value) {
+        contacts.put(type, value);
+    }
+
+    public Resume() {
+    }
+
     public Resume(String uuid, String fullName) {
         Objects.requireNonNull(uuid, "Uuid can't be null");
         Objects.requireNonNull(fullName, "FullName can't be null");
@@ -46,25 +72,6 @@ public class Resume implements Serializable {
         this.uuid = UUID.randomUUID().toString();
     }
 
-    public String getUuid() {
-        return uuid;
-    }
-
-    public AbstractSection getSection(SectionType type){
-        return sections.get(type);
-    }
-
-    public String getContact(ContactType type){
-        return contacts.get(type);
-    }
-
-    public void setSection(SectionType type, AbstractSection section){
-        sections.put(type, section);
-    }
-
-    public void setContact(ContactType type, String value){
-        contacts.put(type, value);
-    }
 
     @Override
     public String toString() {

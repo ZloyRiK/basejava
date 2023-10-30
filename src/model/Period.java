@@ -10,10 +10,41 @@ public class Period implements Serializable {
     private static final long serialVersionUID = 1L;
     private LocalDate start;
     private LocalDate finish;
-
     private String subtitle;
-
     private String periodDescription;
+
+    public LocalDate getStart() {
+        return start;
+    }
+
+    public void setStart(LocalDate start) {
+        this.start = start;
+    }
+
+    public LocalDate getFinish() {
+        return finish;
+    }
+
+    public void setFinish(LocalDate finish) {
+        this.finish = finish;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
+    }
+
+    public String getPeriodDescription() {
+        return periodDescription;
+    }
+
+    public void setPeriodDescription(String periodDescription) {
+        this.periodDescription = periodDescription;
+    }
+
 
     public Period() {
     }
@@ -64,37 +95,6 @@ public class Period implements Serializable {
         this.periodDescription = periodDescription;
     }
 
-    public LocalDate getStart() {
-        return start;
-    }
-
-    public void setStart(LocalDate start) {
-        this.start = start;
-    }
-
-    public LocalDate getFinish() {
-        return finish;
-    }
-
-    public void setFinish(LocalDate finish) {
-        this.finish = finish;
-    }
-
-    public String getSubtitle() {
-        return subtitle;
-    }
-
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
-    }
-
-    public String getPeriodDescription() {
-        return periodDescription;
-    }
-
-    public void setPeriodDescription(String periodDescription) {
-        this.periodDescription = periodDescription;
-    }
     private void checkPeriod(int startMonth, int startYear, int finishMonth, int finishYear) {
         if (startMonth == 0 || startYear == 0 || finishMonth == 0 || finishYear == 0){
             throw new NullDateException("Дата не может содержать параметр равный 0");
